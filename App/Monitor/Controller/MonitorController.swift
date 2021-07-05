@@ -32,7 +32,7 @@ class MonitorController: UIViewController {
         lineChart2.animate(xAxisDuration: 1.0, easingOption: .linear)
         linchart3.animate(xAxisDuration: 1.0, yAxisDuration:1.0, easingOption: .linear)
         
-        COVID19CollectorBehavior.monitorController = self
+        CollectorAction.monitorController = self
         
         let patientMonitor = TabBarControllerViewController.patientSelected
         self.name.text = patientMonitor?.name

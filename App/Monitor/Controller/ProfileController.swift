@@ -35,7 +35,8 @@ class ProfileController: UIViewController {
     
     
     @IBAction func signOut(_ sender: Any) {
-        COVID19UsefulData.shared.behavior?.stop()
+        //COVID19UsefulData.shared.behavior?.stop()
+        Environment.environment.stop()
         self.performSegue(withIdentifier: "unwindToViewController1", sender: self)
     }
 

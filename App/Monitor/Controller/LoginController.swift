@@ -45,8 +45,9 @@ class LoginController: UIViewController, UITextFieldDelegate {
                 COVID19DAOPatientVitalSign.getVitalSign(patient: patient, option: "all")
             }
             
-            let b = COVID19CollectorBehavior(interval: 5)
-            Agent.addBehavior(behavior: b)
+            //let b = CollectorAction(interval: 5)
+            //CollectorAgent.addBehavior(behavior: b)
+            Environment.environment.start()
             
             performSegue(withIdentifier: "goToMyPatients", sender: self)
         }
