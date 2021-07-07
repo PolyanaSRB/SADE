@@ -49,6 +49,7 @@ class VitalSignAction: OneShotAction {
         
         let alertAction = AlertAction()
         alertAction.parameter = (patient, message) as AnyObject
+        Environment.environment.agents["AlertAgent"]?.plans[0].goal.status = StatusGoal.execute
         Environment.environment.agents["AlertAgent"]?.plans[0].actions.append(alertAction)
         
         

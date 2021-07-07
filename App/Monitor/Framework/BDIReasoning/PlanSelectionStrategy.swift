@@ -9,5 +9,5 @@
 import Foundation
 
 protocol PlanSelectionStrategy: ReasoningStrategy {
-    static func selectPlan()
+    func selectPlan()
 }

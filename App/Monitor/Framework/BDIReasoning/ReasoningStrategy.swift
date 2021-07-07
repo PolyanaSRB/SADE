@@ -9,5 +9,5 @@
 import Foundation
 
 protocol ReasoningStrategy {
-    static func setAgent()
+    func setAgent(agent: Agent)
 }

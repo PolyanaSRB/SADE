@@ -14,13 +14,22 @@ class Goal {
     // var action: Action
     //var preCondition: Condition
     //var posCondition: Condition
-    var status: Bool
+    // var status: Bool
+    var status: StatusGoal = StatusGoal.waiting
     
-    init(name: String, /*plans: [Int:[Plan]], preCondition: Condition, posCondition: Condition,*/ status: Bool) {
+    init(name: String) { /*plans: [Int:[Plan]], preCondition: Condition, posCondition: Condition, status: Bool) {*/
         self.name = name
         //self.plans = plans
         //self.preCondition = preCondition
         //self.posCondition = posCondition
-        self.status = status
+        // self.status = status
     }
+}
+
+enum StatusGoal {
+    case execute
+    case executed
+    case executing
+    case waiting
+    case failed
 }

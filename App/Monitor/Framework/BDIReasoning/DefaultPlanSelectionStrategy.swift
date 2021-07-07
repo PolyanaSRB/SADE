@@ -9,7 +9,7 @@
 import Foundation
 
 class DefaultPlanSelectionStrategy: AbstractReasoningStrategy, PlanSelectionStrategy {
-    static func selectPlan() {
+    func selectPlan() {
         // implements function selectPlan - selecionar plano, dentro de um conjunto de planos dados, que sera executado para alcancar um goal dado - definir a estrategia de selecao (primeiro da lista? aleatoria?)
     }
 }

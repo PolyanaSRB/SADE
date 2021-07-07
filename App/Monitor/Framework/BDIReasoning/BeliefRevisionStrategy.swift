@@ -9,5 +9,5 @@
 import Foundation
 
 protocol BeliefRevisionStrategy: ReasoningStrategy {
-    static func reviewBeliefs()
+    func reviewBeliefs(beliefs: [Belief])
 }

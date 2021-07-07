@@ -9,7 +9,10 @@
 import Foundation
 
 class DefaultOptionGenerationStrategy: AbstractReasoningStrategy, OptionGenerationStrategy {
-    static func reviewGoals() {
+    func reviewGoals(goals: [Goal]) {
         // implement function reviewGoals - analisar goals que ainda nao foram alcancados e escolher aqueles a serem eliminados e talvez gerar novos goals
+        for goal in goals {
+            // implementar acao para revisar goals
+        }
     }
 }

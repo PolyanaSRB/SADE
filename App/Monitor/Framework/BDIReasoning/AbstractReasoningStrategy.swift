@@ -9,7 +9,11 @@
 import Foundation
 
 class AbstractReasoningStrategy: ReasoningStrategy {
-    static func setAgent() {
+    var agent: Agent?
+    
+    func setAgent(agent: Agent) {
         // implement function setAgent
+        self.agent = agent
     }
+    
 }

@@ -21,6 +21,7 @@ class CollectorAction : CyclicAction {
             COVID19DAOPatientVitalSign.getVitalSign(patient: patient, option: "last")
             let VSaction = VitalSignAction()
             VSaction.parameter = patient
+            Environment.environment.agents["VitalSignAgent"]?.plans[0].goal.status = StatusGoal.execute
             Environment.environment.agents["VitalSignAgent"]?.plans[0].actions.append(VSaction)
         }
 

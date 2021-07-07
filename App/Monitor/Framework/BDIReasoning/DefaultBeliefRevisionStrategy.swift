@@ -8,8 +8,12 @@
 
 import Foundation
 
-class DefaultBeliefeRevisionStrategy: AbstractReasoningStrategy, BeliefRevisionStrategy {
-    static func reviewBeliefs() {
-        // implement function reviewBeliefs - revisar os beliefs da base de beliefs do agente/capability, chegando inconsistencias, associando timestamp, ...
+class DefaultBeliefRevisionStrategy: AbstractReasoningStrategy, BeliefRevisionStrategy {
+    
+    func reviewBeliefs(beliefs: [Belief]) {
+        // implement function reviewBeliefs - revisar os beliefs da base de beliefs do agente/capability, checando inconsistencias, associando timestamp, ...
+        for belief in beliefs {
+            // implementar acao para revisar beliefs
+        }
     }
 }

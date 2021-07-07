@@ -9,5 +9,5 @@
 import Foundation
 
 protocol OptionGenerationStrategy: ReasoningStrategy {
-    static func reviewGoals()
+    func reviewGoals(goals: [Goal])
 }

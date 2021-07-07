@@ -243,7 +243,7 @@
 			path = Core;
 			sourceTree = "<group>";
 		};
-		486F89AC24AD377200556E00 /* Util */ = {
+		486F89AC24AD377200556E00 /* Remote Monitoring Health */ = {
 			isa = PBXGroup;
 			children = (
 				486F89B124AD37E900556E00 /* HealthCareWorker.swift */,
@@ -256,7 +256,46 @@
 				486F89B924AD436D00556E00 /* VitalSignType.swift */,
 				486F89C324AD4D0900556E00 /* DAONewData.swift */,
 			);
-			path = Util;
+			path = "Remote Monitoring Health";
+			sourceTree = "<group>";
+		};
+		4878B04C2695F2F40035E52C /* FIPA */ = {
+			isa = PBXGroup;
+			children = (
+				4878B04D2695F3490035E52C /* Agent Management */,
+				4878B04E2695F3630035E52C /* Communication */,
+			);
+			path = FIPA;
+			sourceTree = "<group>";
+		};
+		4878B04D2695F3490035E52C /* Agent Management */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Agent Management";
+			sourceTree = "<group>";
+		};
+		4878B04E2695F3630035E52C /* Communication */ = {
+			isa = PBXGroup;
+			children = (
+				4878B0502695F3BD0035E52C /* Agent Communication */,
+				4878B04F2695F3A90035E52C /* Agent Message Transport */,
+			);
+			path = Communication;
+			sourceTree = "<group>";
+		};
+		4878B04F2695F3A90035E52C /* Agent Message Transport */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Agent Message Transport";
+			sourceTree = "<group>";
+		};
+		4878B0502695F3BD0035E52C /* Agent Communication */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Agent Communication";
 			sourceTree = "<group>";
 		};
 		4884E9F125DF0C08003FC838 /* Action */ = {
@@ -301,6 +340,8 @@
 			children = (
 				483DB79325DD61BC00522FBA /* Core */,
 				480CB5962671231E00001D2F /* BDIReasoning */,
+				4878B04C2695F2F40035E52C /* FIPA */,
+				486F89AC24AD377200556E00 /* Remote Monitoring Health */,
 			);
 			path = Framework;
 			sourceTree = "<group>";
@@ -352,7 +393,6 @@
 			children = (
 				483BA23C25DF3B7500534639 /* Agents */,
 				483BA23D25DF3BA800534639 /* Actions */,
-				486F89AC24AD377200556E00 /* Util */,
 				483650DB25E2BA3E00FF7982 /* COVID19 */,
 			);
 			path = Model;

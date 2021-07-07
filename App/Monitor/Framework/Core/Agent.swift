@@ -16,13 +16,19 @@ class Agent {
     var plans: [Plan]
     var interval: Double = 1
     var timer: Timer?
+    var beliefRevision: BeliefRevisionStrategy
+    var optionGeneration: OptionGenerationStrategy
+    var filter: DeliberationStrategy
     
-    init(name: String, env: Environment, goals: [Goal], beliefs: [Belief], plans: [Plan]) {
+    init(name: String, env: Environment, goals: [Goal], beliefs: [Belief], plans: [Plan], beliefRevision: BeliefRevisionStrategy, optionGeneration: OptionGenerationStrategy, filter: DeliberationStrategy) {
         self.name = name
         self.env = env
         self.goals = goals
         self.beliefs = beliefs
         self.plans = plans
+        self.beliefRevision = beliefRevision
+        self.optionGeneration  = optionGeneration
+        self.filter = filter
     }
     
     func addGoal(goal: Goal){
@@ -38,24 +44,36 @@ class Agent {
     }
     
     func start(){
-        self.timer = Timer.scheduledTimer(timeInterval: self.interval, target: self, selector: #selector(runPlans), userInfo: nil, repeats: true)
+        self.timer = Timer.scheduledTimer(timeInterval: self.interval, target: self, selector: #selector(runBDICycle), userInfo: nil, repeats: true)
     }
     
     func stop() {
         self.timer?.invalidate()
     }
     
-    @objc func runPlans(){
+    @objc func runBDICycle(){
         /*for plan in self.plans{
             if plan.status == .executing {
                 return
             }
         }*/
+        self.beliefRevision.reviewBeliefs(beliefs: self.beliefs)
+        self.optionGeneration.reviewGoals(goals: self.goals)
+        self.filter.filter(goals: self.goals)
+        
+        runPlans()
+        
+    }
+    
+    func runPlans(){  // default plan selection strategy (sequence)
         for plan in self.plans {
-            if !plan.goal.status {
+            if plan.goal.status == StatusGoal.execute {
                 //&& plan.status == .neverExecuted {
+                plan.goal.status = StatusGoal.executing
                 plan.executePlan()
+                plan.goal.status = StatusGoal.executed
             }
         }
+        
     }
 }

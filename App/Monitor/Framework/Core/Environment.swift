@@ -28,9 +28,9 @@ class Environment {
         Environment.environment.name = "VSmonitor"
 
         //set goals
-        let collectGoal = Goal(name: "CollectGoal", status: false)
-        let vitalSignGoal = Goal(name: "VitalSignGoal", status: false)
-        let alertGoal = Goal(name: "AlertGoal", status: false)
+        let collectGoal = Goal(name: "CollectGoal") //, status: false)
+        let vitalSignGoal = Goal(name: "VitalSignGoal") //, status: false)
+        let alertGoal = Goal(name: "AlertGoal") //, status: false)
         
         // set actions
         let collectAction = CollectorAction(interval: 5)
@@ -45,10 +45,36 @@ class Environment {
         
         Environment.environment.plans = [collectPlan, vitalSignPlan, alertPlan]
 
+        //set belief revisions
+        let collectorBeliefRevision = DefaultBeliefRevisionStrategy()
+        let vitalSignBeliefRevision = DefaultBeliefRevisionStrategy()
+        let alertBeliefRevision = DefaultBeliefRevisionStrategy()
+        
+        //set option generations
+        let collectorOptionGener = DefaultOptionGenerationStrategy()
+        let vitalSignOptionGener = DefaultOptionGenerationStrategy()
+        let alertOptionGener = DefaultOptionGenerationStrategy()
+        
+        //set filter
+        let collectorFilter = DefaultDeliberationStrategy()
+        let vitalSignFilter = DefaultDeliberationStrategy()
+        let alertFilter = DefaultDeliberationStrategy()
+        
         //set agents
-        let collectorAgent = Agent(name: "CollectorAgent", env: Environment.environment, goals: [collectGoal], beliefs: [], plans: [collectPlan])
-        let vitalSignAgent = Agent(name: "VitalSignAgent", env: Environment.environment, goals: [vitalSignGoal], beliefs: [], plans: [vitalSignPlan])
-        let alertAgent = Agent(name: "AlertAgent", env: Environment.environment, goals: [alertGoal], beliefs: [], plans: [alertPlan])
+        let collectorAgent = Agent(name: "CollectorAgent", env: Environment.environment, goals: [collectGoal], beliefs: [], plans: [collectPlan], beliefRevision: collectorBeliefRevision, optionGeneration: collectorOptionGener, filter: collectorFilter)
+        collectorBeliefRevision.setAgent(agent: collectorAgent)
+        collectorOptionGener.setAgent(agent: collectorAgent)
+        collectorFilter.setAgent(agent: collectorAgent)
+        
+        let vitalSignAgent = Agent(name: "VitalSignAgent", env: Environment.environment, goals: [vitalSignGoal], beliefs: [], plans: [vitalSignPlan], beliefRevision: vitalSignBeliefRevision, optionGeneration: vitalSignOptionGener, filter: vitalSignFilter)
+        vitalSignBeliefRevision.setAgent(agent: vitalSignAgent)
+        vitalSignOptionGener.setAgent(agent: vitalSignAgent)
+        vitalSignFilter.setAgent(agent: vitalSignAgent)
+        
+        let alertAgent = Agent(name: "AlertAgent", env: Environment.environment, goals: [alertGoal], beliefs: [], plans: [alertPlan], beliefRevision: alertBeliefRevision, optionGeneration: alertOptionGener, filter: alertFilter)
+        alertBeliefRevision.setAgent(agent: alertAgent)
+        alertOptionGener.setAgent(agent: alertAgent)
+        alertFilter.setAgent(agent: alertAgent)
         
         Environment.environment.agents = ["CollectorAgent": collectorAgent, "VitalSignAgent": vitalSignAgent, "AlertAgent": alertAgent]
         

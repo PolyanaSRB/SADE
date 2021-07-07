@@ -9,5 +9,5 @@
 import Foundation
 
 protocol DeliberationStrategy: ReasoningStrategy {
-    static func filter()
+    func filter(goals: [Goal])
 }
