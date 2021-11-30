@@ -28,7 +28,7 @@ class Goal {
 
 enum StatusGoal {
     case execute
-    case executed
+    case success
     case executing
     case waiting
     case failed

@@ -31,6 +31,17 @@
 		483DB7A825DD6C3C00522FBA /* Condition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 483DB7A725DD6C3C00522FBA /* Condition.swift */; };
 		485DF0D724BBB22000EFD88A /* COVID19DAOIdentifyHCW.swift in Sources */ = {isa = PBXBuildFile; fileRef = 485DF0D624BBB22000EFD88A /* COVID19DAOIdentifyHCW.swift */; };
 		485DF0D924BBB8D800EFD88A /* COVID19DAOOdentifyHospital.swift in Sources */ = {isa = PBXBuildFile; fileRef = 485DF0D824BBB8D800EFD88A /* COVID19DAOOdentifyHospital.swift */; };
+		48613D02270DCAB0005490EA /* HealthKitSetupAssistant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48613D01270DCAB0005490EA /* HealthKitSetupAssistant.swift */; };
+		48613D05270DCD03005490EA /* HealthKitReaderWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48613D04270DCD03005490EA /* HealthKitReaderWriter.swift */; };
+		486DB8F626F1768B0068A14F /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 486DB8F526F1768B0068A14F /* HealthKit.framework */; };
+		486DB8FB26F17EE60068A14F /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9C6F054246EC79100B30BD1 /* Charts.framework */; };
+		486DB8FC26F17EE90068A14F /* ChartsRealm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9C6F048246EC72500B30BD1 /* ChartsRealm.framework */; };
+		486DB8FD26F17EEC0068A14F /* Pods_Monitor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9C6F049246EC72500B30BD1 /* Pods_Monitor.framework */; };
+		486DB8FE26F17EEF0068A14F /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9C6F04A246EC72500B30BD1 /* Realm.framework */; };
+		486DB8FF26F17EF30068A14F /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9C6F04B246EC72500B30BD1 /* RealmSwift.framework */; };
+		486DB90026F17EF80068A14F /* Pods_Monitor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9C6F043246EC70700B30BD1 /* Pods_Monitor.framework */; };
+		486DB90126F17EFB0068A14F /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9C6F03D246EB89500B30BD1 /* Charts.framework */; };
+		486DB90226F17EFE0068A14F /* Pods_Monitor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C8662E25144E7284307E3F7 /* Pods_Monitor.framework */; };
 		486F89AE24AD379F00556E00 /* Doctor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486F89AD24AD379F00556E00 /* Doctor.swift */; };
 		486F89B024AD37C400556E00 /* Nurse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486F89AF24AD37C400556E00 /* Nurse.swift */; };
 		486F89B224AD37E900556E00 /* HealthCareWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486F89B124AD37E900556E00 /* HealthCareWorker.swift */; };
@@ -94,6 +105,10 @@
 		483DB7A725DD6C3C00522FBA /* Condition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Condition.swift; sourceTree = "<group>"; };
 		485DF0D624BBB22000EFD88A /* COVID19DAOIdentifyHCW.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = COVID19DAOIdentifyHCW.swift; sourceTree = "<group>"; };
 		485DF0D824BBB8D800EFD88A /* COVID19DAOOdentifyHospital.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = COVID19DAOOdentifyHospital.swift; sourceTree = "<group>"; };
+		48613D01270DCAB0005490EA /* HealthKitSetupAssistant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitSetupAssistant.swift; sourceTree = "<group>"; };
+		48613D04270DCD03005490EA /* HealthKitReaderWriter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitReaderWriter.swift; sourceTree = "<group>"; };
+		486DB8F426F1768B0068A14F /* Monitor.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Monitor.entitlements; sourceTree = "<group>"; };
+		486DB8F526F1768B0068A14F /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		486F89AD24AD379F00556E00 /* Doctor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Doctor.swift; sourceTree = "<group>"; };
 		486F89AF24AD37C400556E00 /* Nurse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Nurse.swift; sourceTree = "<group>"; };
 		486F89B124AD37E900556E00 /* HealthCareWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthCareWorker.swift; sourceTree = "<group>"; };
@@ -147,7 +162,16 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				486DB8FE26F17EEF0068A14F /* Realm.framework in Frameworks */,
+				486DB8FB26F17EE60068A14F /* Charts.framework in Frameworks */,
+				486DB8FF26F17EF30068A14F /* RealmSwift.framework in Frameworks */,
+				486DB90226F17EFE0068A14F /* Pods_Monitor.framework in Frameworks */,
+				486DB90126F17EFB0068A14F /* Charts.framework in Frameworks */,
 				C9C6F047246EC71800B30BD1 /* UIKit.framework in Frameworks */,
+				486DB8F626F1768B0068A14F /* HealthKit.framework in Frameworks */,
+				486DB8FD26F17EEC0068A14F /* Pods_Monitor.framework in Frameworks */,
+				486DB8FC26F17EE90068A14F /* ChartsRealm.framework in Frameworks */,
+				486DB90026F17EF80068A14F /* Pods_Monitor.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -157,6 +181,7 @@
 		3D913AE28C319CF686AE1BE9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				486DB8F526F1768B0068A14F /* HealthKit.framework */,
 				C9C6F054246EC79100B30BD1 /* Charts.framework */,
 				C9C6F048246EC72500B30BD1 /* ChartsRealm.framework */,
 				C9C6F049246EC72500B30BD1 /* Pods_Monitor.framework */,
@@ -215,6 +240,7 @@
 				486F89BD24AD46DB00556E00 /* CollectorAgent.swift */,
 				48C1B82A25DEB74B00725A90 /* VitalSignAgent.swift */,
 				48C1B82D25DEB76400725A90 /* AlertAgent.swift */,
+				483BA23D25DF3BA800534639 /* Actions */,
 			);
 			path = Agents;
 			sourceTree = "<group>";
@@ -255,6 +281,8 @@
 				486F89BB24AD446E00556E00 /* PatientVitalSign.swift */,
 				486F89B924AD436D00556E00 /* VitalSignType.swift */,
 				486F89C324AD4D0900556E00 /* DAONewData.swift */,
+				48613D01270DCAB0005490EA /* HealthKitSetupAssistant.swift */,
+				48613D04270DCD03005490EA /* HealthKitReaderWriter.swift */,
 			);
 			path = "Remote Monitoring Health";
 			sourceTree = "<group>";
@@ -376,6 +404,7 @@
 		C918AC972450CAAF00D8ED1B /* Monitor */ = {
 			isa = PBXGroup;
 			children = (
+				486DB8F426F1768B0068A14F /* Monitor.entitlements */,
 				4892B57926934216004E20D7 /* Framework */,
 				4885A2EC24A52A2500F1D5D7 /* Instance */,
 				C918ACB12450CF4B00D8ED1B /* View */,
@@ -392,7 +421,6 @@
 			isa = PBXGroup;
 			children = (
 				483BA23C25DF3B7500534639 /* Agents */,
-				483BA23D25DF3BA800534639 /* Actions */,
 				483650DB25E2BA3E00FF7982 /* COVID19 */,
 			);
 			path = Model;
@@ -557,6 +585,7 @@
 				483DB79C25DD6BEB00522FBA /* Goal.swift in Sources */,
 				48057A8F25DDDA7600278B54 /* LeafBelief.swift in Sources */,
 				486F89C424AD4D0900556E00 /* DAONewData.swift in Sources */,
+				48613D05270DCD03005490EA /* HealthKitReaderWriter.swift in Sources */,
 				486F89B224AD37E900556E00 /* HealthCareWorker.swift in Sources */,
 				480CB5A2267126ED00001D2F /* DefaultBeliefRevisionStrategy.swift in Sources */,
 				483DB7A525DD6C2B00522FBA /* Action.swift in Sources */,
@@ -571,6 +600,7 @@
 				48E276E424916F3B00BDAC77 /* MyPatientsController.swift in Sources */,
 				483DB79F25DD6BFD00522FBA /* Belief.swift in Sources */,
 				C918AC992450CAAF00D8ED1B /* AppDelegate.swift in Sources */,
+				48613D02270DCAB0005490EA /* HealthKitSetupAssistant.swift in Sources */,
 				480CB5A52671275800001D2F /* OptionGenerationStrategy.swift in Sources */,
 				486F89BA24AD436D00556E00 /* VitalSignType.swift in Sources */,
 				480CB5A8267127E000001D2F /* DefaultOptionGenerationStrategy.swift in Sources */,
@@ -739,6 +769,7 @@
 			baseConfigurationReference = 285445ADCE937761C64D1276 /* Pods-Monitor.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Monitor/Monitor.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
@@ -760,6 +791,7 @@
 			baseConfigurationReference = 8725F8C3234C5CE14E9237DA /* Pods-Monitor.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Monitor/Monitor.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";

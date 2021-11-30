@@ -8,6 +8,9 @@
 
 import Foundation
 
-protocol Belief {
-    func operation()
+class Belief {
+    var data: Any?
+    var available: Bool = false
+    
+    func operation(){}
 }

@@ -24,7 +24,7 @@ class Environment {
         self.name = name
     }*/
     
-    func start() {
+    func start() {  // coisas da instancia nao podem ficar aqui - criar o environment da instancia e colocar tudo isso
         Environment.environment.name = "VSmonitor"
 
         //set goals

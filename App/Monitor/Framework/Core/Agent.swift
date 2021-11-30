@@ -44,7 +44,7 @@ class Agent {
     }
     
     func start(){
-        self.timer = Timer.scheduledTimer(timeInterval: self.interval, target: self, selector: #selector(runBDICycle), userInfo: nil, repeats: true)
+        self.timer = Timer.scheduledTimer(timeInterval: self.interval, target: self, selector: #selector(runBDICycle), userInfo: nil, repeats: true) // posso invalidar o timer e colocar um tempo maior, se necessarios (caso os planos nao tenham acabado de executar, por exemplo
     }
     
     func stop() {
@@ -57,7 +57,7 @@ class Agent {
                 return
             }
         }*/
-        self.beliefRevision.reviewBeliefs(beliefs: self.beliefs)
+        self.beliefRevision.reviewBeliefs(beliefs: self.beliefs) //pegar os retornos pra passar pro proximo passo
         self.optionGeneration.reviewGoals(goals: self.goals)
         self.filter.filter(goals: self.goals)
         
@@ -69,9 +69,9 @@ class Agent {
         for plan in self.plans {
             if plan.goal.status == StatusGoal.execute {
                 //&& plan.status == .neverExecuted {
-                plan.goal.status = StatusGoal.executing
+                plan.goal.status = StatusGoal.executing // goal e plan estao 1 pra 1 - plan com status e em reviewGoals, verificar se todos os planos do goal estao success
                 plan.executePlan()
-                plan.goal.status = StatusGoal.executed
+                plan.goal.status = StatusGoal.success
             }
         }
         

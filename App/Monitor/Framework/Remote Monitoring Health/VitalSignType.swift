@@ -7,6 +7,7 @@
 //
 
 import Foundation
+// consigo usar a estrutura do healthkit sem autorizacao?
 
 // Class to register vital sign types that are being collected, like spo2, temperature, breath frequency, ...
 class VitalSignType {

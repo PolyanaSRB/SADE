@@ -13,6 +13,13 @@ class DefaultOptionGenerationStrategy: AbstractReasoningStrategy, OptionGenerati
         // implement function reviewGoals - analisar goals que ainda nao foram alcancados e escolher aqueles a serem eliminados e talvez gerar novos goals
         for goal in goals {
             // implementar acao para revisar goals
+            if goal.status == StatusGoal.waiting {
+                
+            }
+            else if goal.status == StatusGoal.failed {
+                
+            }
+            // return goals waiting primeiro
         }
     }
 }

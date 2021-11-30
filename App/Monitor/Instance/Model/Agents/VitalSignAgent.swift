@@ -11,9 +11,9 @@ import Foundation
 class VitalSignAgent: Agent {
     var patient: COVID19Patient
     
-    init(name: String, env: Environment, goals: [Goal], beliefs: [Belief], plans: [Plan], patient: COVID19Patient) {
+    init(name: String, env: Environment, goals: [Goal], beliefs: [Belief], plans: [Plan],beliefRevision: BeliefRevisionStrategy, optionGeneration: OptionGenerationStrategy, filter: DeliberationStrategy, patient: COVID19Patient) {
         self.patient = patient
         
-        super.init(name: name, env: env, goals: goals, beliefs: beliefs, plans: plans)
+        super.init(name: name, env: env, goals: goals, beliefs: beliefs, plans: plans, beliefRevision: beliefRevision, optionGeneration: optionGeneration, filter: filter)
     }
 }

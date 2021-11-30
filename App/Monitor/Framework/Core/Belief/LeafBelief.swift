@@ -9,8 +9,8 @@
 import Foundation
 
 class LeafBelief: Belief {
-    var data: Any?
     
-    func operation(){}
+    
+    override func operation(){}
 }
 

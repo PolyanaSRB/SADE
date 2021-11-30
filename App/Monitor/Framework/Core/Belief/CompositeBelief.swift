@@ -9,7 +9,7 @@
 import Foundation
 
 class CompositeBelief: Belief {
-    func operation() {
+    override func operation() {
         
     }
     

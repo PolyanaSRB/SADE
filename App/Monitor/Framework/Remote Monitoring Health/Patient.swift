@@ -21,6 +21,7 @@ class Patient {
     //var hospital: Hospital
     var hospitalSector: HospitalSector?
     var vitalSign: [String: [PatientVitalSign]]  //String ou VitalSignType
+    var HKsetup: HealthKitSetupAssistant?
     
     init(name: String, cpf: String, phone: String, dateBirth: Date, comorbidity: String, allergy: String, dateEntrance: Date, isMonitored: Bool) { //}, hospitalSector: HospitalSector?) {
         
