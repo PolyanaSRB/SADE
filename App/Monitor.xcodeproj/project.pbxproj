@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -19,6 +19,7 @@
 		480CB5AE2671288100001D2F /* DefaultDeliberationStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 480CB5AD2671288100001D2F /* DefaultDeliberationStrategy.swift */; };
 		480CB5B1267128F100001D2F /* PlanSelectionStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 480CB5B0267128F100001D2F /* PlanSelectionStrategy.swift */; };
 		480CB5B42671295400001D2F /* DefaultPlanSelectionStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 480CB5B32671295400001D2F /* DefaultPlanSelectionStrategy.swift */; };
+		48105B262757B5EB002FC79B /* SocketSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 48105B252757B5EB002FC79B /* SocketSwift */; };
 		4826772024BF6881000C8008 /* TabBarControllerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4826771F24BF6881000C8008 /* TabBarControllerViewController.swift */; };
 		483BA24025DF459D00534639 /* VitalSignAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 483BA23F25DF459D00534639 /* VitalSignAction.swift */; };
 		483BA24325DF45AE00534639 /* AlertAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 483BA24225DF45AE00534639 /* AlertAction.swift */; };
@@ -53,6 +54,9 @@
 		486F89BE24AD46DB00556E00 /* CollectorAgent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486F89BD24AD46DB00556E00 /* CollectorAgent.swift */; };
 		486F89C424AD4D0900556E00 /* DAONewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486F89C324AD4D0900556E00 /* DAONewData.swift */; };
 		4880D8B224AE6EB60087743E /* CollectorAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4880D8B124AE6EB60087743E /* CollectorAction.swift */; };
+		488BA5832756F01B00479D63 /* Connection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488BA5822756F01B00479D63 /* Connection.swift */; };
+		488BA5862756F02F00479D63 /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488BA5852756F02F00479D63 /* Client.swift */; };
+		488BA5892756F04000479D63 /* Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488BA5882756F04000479D63 /* Server.swift */; };
 		4898DD5024B011C50020E6A7 /* COVID19Patient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4898DD4F24B011C50020E6A7 /* COVID19Patient.swift */; };
 		4898DD5224B011F10020E6A7 /* COVID19UsefulData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4898DD5124B011F10020E6A7 /* COVID19UsefulData.swift */; };
 		4898DD5424B012060020E6A7 /* COVID19Monitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4898DD5324B012060020E6A7 /* COVID19Monitor.swift */; };
@@ -120,6 +124,9 @@
 		486F89BD24AD46DB00556E00 /* CollectorAgent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectorAgent.swift; sourceTree = "<group>"; };
 		486F89C324AD4D0900556E00 /* DAONewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DAONewData.swift; sourceTree = "<group>"; };
 		4880D8B124AE6EB60087743E /* CollectorAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectorAction.swift; sourceTree = "<group>"; };
+		488BA5822756F01B00479D63 /* Connection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Connection.swift; sourceTree = "<group>"; };
+		488BA5852756F02F00479D63 /* Client.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
+		488BA5882756F04000479D63 /* Server.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Server.swift; sourceTree = "<group>"; };
 		4898DD4F24B011C50020E6A7 /* COVID19Patient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = COVID19Patient.swift; sourceTree = "<group>"; };
 		4898DD5124B011F10020E6A7 /* COVID19UsefulData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = COVID19UsefulData.swift; sourceTree = "<group>"; };
 		4898DD5324B012060020E6A7 /* COVID19Monitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = COVID19Monitor.swift; sourceTree = "<group>"; };
@@ -172,6 +179,7 @@
 				486DB8FD26F17EEC0068A14F /* Pods_Monitor.framework in Frameworks */,
 				486DB8FC26F17EE90068A14F /* ChartsRealm.framework in Frameworks */,
 				486DB90026F17EF80068A14F /* Pods_Monitor.framework in Frameworks */,
+				48105B262757B5EB002FC79B /* SocketSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -315,6 +323,9 @@
 		4878B04F2695F3A90035E52C /* Agent Message Transport */ = {
 			isa = PBXGroup;
 			children = (
+				488BA5822756F01B00479D63 /* Connection.swift */,
+				488BA5852756F02F00479D63 /* Client.swift */,
+				488BA5882756F04000479D63 /* Server.swift */,
 			);
 			path = "Agent Message Transport";
 			sourceTree = "<group>";
@@ -469,6 +480,9 @@
 			dependencies = (
 			);
 			name = Monitor;
+			packageProductDependencies = (
+				48105B252757B5EB002FC79B /* SocketSwift */,
+			);
 			productName = Monitor;
 			productReference = C918AC952450CAAF00D8ED1B /* Monitor.app */;
 			productType = "com.apple.product-type.application";
@@ -497,6 +511,9 @@
 				Base,
 			);
 			mainGroup = C918AC8C2450CAAF00D8ED1B;
+			packageReferences = (
+				48105B242757B5EB002FC79B /* XCRemoteSwiftPackageReference "Socket.swift" */,
+			);
 			productRefGroup = C918AC962450CAAF00D8ED1B /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -597,12 +614,14 @@
 				483BA24025DF459D00534639 /* VitalSignAction.swift in Sources */,
 				C918ACAF2450CD9E00D8ED1B /* CreateAccountController.swift in Sources */,
 				480CB5B1267128F100001D2F /* PlanSelectionStrategy.swift in Sources */,
+				488BA5892756F04000479D63 /* Server.swift in Sources */,
 				48E276E424916F3B00BDAC77 /* MyPatientsController.swift in Sources */,
 				483DB79F25DD6BFD00522FBA /* Belief.swift in Sources */,
 				C918AC992450CAAF00D8ED1B /* AppDelegate.swift in Sources */,
 				48613D02270DCAB0005490EA /* HealthKitSetupAssistant.swift in Sources */,
 				480CB5A52671275800001D2F /* OptionGenerationStrategy.swift in Sources */,
 				486F89BA24AD436D00556E00 /* VitalSignType.swift in Sources */,
+				488BA5862756F02F00479D63 /* Client.swift in Sources */,
 				480CB5A8267127E000001D2F /* DefaultOptionGenerationStrategy.swift in Sources */,
 				486F89B824AD406700556E00 /* Patient.swift in Sources */,
 				480CB5AE2671288100001D2F /* DefaultDeliberationStrategy.swift in Sources */,
@@ -617,6 +636,7 @@
 				480CB59B2671251D00001D2F /* ReasoningStrategy.swift in Sources */,
 				C918AC9B2450CAAF00D8ED1B /* SceneDelegate.swift in Sources */,
 				480CB598267123E900001D2F /* BeliefRevisionStrategy.swift in Sources */,
+				488BA5832756F01B00479D63 /* Connection.swift in Sources */,
 				480CB5AB2671283700001D2F /* DeliberationStrategy.swift in Sources */,
 				486F89AE24AD379F00556E00 /* Doctor.swift in Sources */,
 				486F89BC24AD446E00556E00 /* PatientVitalSign.swift in Sources */,
@@ -830,6 +850,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		48105B242757B5EB002FC79B /* XCRemoteSwiftPackageReference "Socket.swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/BiAtoms/Socket.swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.4.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		48105B252757B5EB002FC79B /* SocketSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 48105B242757B5EB002FC79B /* XCRemoteSwiftPackageReference "Socket.swift" */;
+			productName = SocketSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = C918AC8D2450CAAF00D8ED1B /* Project object */;
 }

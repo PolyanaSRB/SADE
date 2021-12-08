@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SocketSwift
 
 // Controller of the login screen
 class LoginController: UIViewController, UITextFieldDelegate {
@@ -22,6 +23,52 @@ class LoginController: UIViewController, UITextFieldDelegate {
         self.txtPassword.delegate = self
 
         // Do any additional setup after loading the view.
+        //Server.run()
+        //Client.run()
+        do {
+            let server = try Socket(.inet, type: .stream, protocol: .tcp) // create server socket
+            try server.set(option: .reuseAddress, true) // set SO_REUSEADDR to 1
+            try server.bind(port: 8090, address: nil) // bind 'localhost:8090' address to the socket
+            try server.listen() // allow incoming connections
+
+            let client = try Socket(.inet, type: .stream, protocol: .tcp) // create client socket
+            try client.connect(port: 8090) // connect to localhost:8090
+            
+            
+
+            //let clientAtServerside = try server.accept() // accept client connection
+            
+            let teste = ([UInt8])("Teste".utf8)
+            print("criou client e server")
+            try client.write(teste)
+            print("escreveu")
+            //var buffer = [UInt8](repeating: 0, count: teste.count) // allocate buffer
+            //let numberOfReadBytes = try server.read(&buffer, size: teste.count)
+            try server.accept()
+            
+            try server.read()
+            print("leu")
+            //print(numberOfReadBytes == teste.count) // true
+            //print(buffer == teste) // true
+            print("done")
+            
+            
+            /*let helloBytes = ([UInt8])("Hello World".utf8)
+            try clientAtServerside.write(helloBytes) // sending bytes to the client
+            clientAtServerside.close()
+
+            var buffer = [UInt8](repeating: 0, count: helloBytes.count) // allocate buffer
+            let numberOfReadBytes = try client.read(&buffer, size: helloBytes.count)
+            print(numberOfReadBytes == helloBytes.count) // true
+            print(buffer == helloBytes) // true
+            print("done")*/
+
+            client.close()
+            server.close()
+        } catch {
+            print(error)
+        }
+
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

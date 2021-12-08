@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SocketSwift
 
 class Agent {
     var name: String  // {get set}
@@ -19,8 +20,10 @@ class Agent {
     var beliefRevision: BeliefRevisionStrategy
     var optionGeneration: OptionGenerationStrategy
     var filter: DeliberationStrategy
+    //var server: Socket
+    //var client: Socket
     
-    init(name: String, env: Environment, goals: [Goal], beliefs: [Belief], plans: [Plan], beliefRevision: BeliefRevisionStrategy, optionGeneration: OptionGenerationStrategy, filter: DeliberationStrategy) {
+    init(name: String, env: Environment, goals: [Goal], beliefs: [Belief], plans: [Plan], beliefRevision: BeliefRevisionStrategy, optionGeneration: OptionGenerationStrategy, filter: DeliberationStrategy) { //}, server: Socket, client: Socket) {
         self.name = name
         self.env = env
         self.goals = goals
@@ -29,6 +32,8 @@ class Agent {
         self.beliefRevision = beliefRevision
         self.optionGeneration  = optionGeneration
         self.filter = filter
+        //self.server = server
+        //self.client = client
     }
     
     func addGoal(goal: Goal){
