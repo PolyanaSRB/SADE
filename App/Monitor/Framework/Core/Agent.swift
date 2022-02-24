@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import SocketSwift
+import Network
 
 class Agent {
     var name: String  // {get set}
@@ -20,10 +20,10 @@ class Agent {
     var beliefRevision: BeliefRevisionStrategy
     var optionGeneration: OptionGenerationStrategy
     var filter: DeliberationStrategy
-    //var server: Socket
-    //var client: Socket
+    var server: Server //TODO passar apenas porta
+    var clients: [Client] = []
     
-    init(name: String, env: Environment, goals: [Goal], beliefs: [Belief], plans: [Plan], beliefRevision: BeliefRevisionStrategy, optionGeneration: OptionGenerationStrategy, filter: DeliberationStrategy) { //}, server: Socket, client: Socket) {
+    init(name: String, env: Environment, goals: [Goal], beliefs: [Belief], plans: [Plan], beliefRevision: BeliefRevisionStrategy, optionGeneration: OptionGenerationStrategy, filter: DeliberationStrategy, server: Server) { //}, server: Socket, client: Socket) {
         self.name = name
         self.env = env
         self.goals = goals
@@ -32,8 +32,9 @@ class Agent {
         self.beliefRevision = beliefRevision
         self.optionGeneration  = optionGeneration
         self.filter = filter
-        //self.server = server
-        //self.client = client
+        self.server = server
+        
+        try! self.server.start()
     }
     
     func addGoal(goal: Goal){
@@ -80,5 +81,27 @@ class Agent {
             }
         }
         
+    }
+    
+    func sendMessage(host:String, port:UInt16, message: ACLMessage) { // como passar ACLMessage? a funcao send do Network tem parametro `Data?`
+        // criar propriedade de array de clients. aqui passar pelo array pra ver se j[a tem um client com essa conexao
+        // client: [Client]
+        //cria Client e send message
+        //let savedData = NSKeyedArchiver.archivedData(withRootObject: message)
+        let savedData = try! NSKeyedArchiver.archivedData(withRootObject: message, requiringSecureCoding: false)
+        var aux = false
+        for client in self.clients {
+            if (client.host == NWEndpoint.Host(host)) && (client.port.rawValue == port) {
+                aux = true
+                client.connection.send(data:savedData)
+                break
+            }
+        }
+        if !aux {
+            let client = Client(host: host, port: port)
+            self.clients.append(client)
+            client.start()
+            client.connection.send(data: savedData)
+        }
     }
 }

@@ -12,6 +12,7 @@ import Charts
 // My instance class for collector behavior, inheriting from the Framework class CyclicAction
 class CollectorAction : CyclicAction {
     static var monitorController: MonitorController?
+    var agent: Agent!
     
     // Function to collect new vital signs for each patient being monitored by health care worker logged in the app and to update monitor charts, adding new entries
     @objc override func runAction() {
@@ -19,10 +20,18 @@ class CollectorAction : CyclicAction {
         
         for patient in COVID19UsefulData.shared.patients {
             COVID19DAOPatientVitalSign.getVitalSign(patient: patient, option: "last")
+            
+            print(patient.name)
+            //DispatchQueue.main.asyncAfter(deadline: .now() + 30) {
+            let aclVSmessage = ACLMessage()
+            aclVSmessage.content = "Verify anomalies on patient \(patient.name)"
+            self.agent.sendMessage(host: "localhost", port: 8888, message: aclVSmessage)
+            
             let VSaction = VitalSignAction()
             VSaction.parameter = patient
             Environment.environment.agents["VitalSignAgent"]?.plans[0].goal.status = StatusGoal.execute
             Environment.environment.agents["VitalSignAgent"]?.plans[0].actions.append(VSaction)
+            //}
         }
 
         if (CollectorAction.monitorController != nil) {

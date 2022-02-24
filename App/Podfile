@@ -8,5 +8,5 @@ target 'Monitor' do
   # Pods for Monitor
   pod 'Charts'
   pod 'ChartsRealm'
-
+  
 end

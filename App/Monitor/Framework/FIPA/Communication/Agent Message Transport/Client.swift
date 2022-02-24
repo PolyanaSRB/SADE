@@ -2,25 +2,38 @@
 //  Client.swift
 //  Monitor
 //
-//  Created by user174461 on 11/30/21.
-//  Copyright © 2021 Polyana Barboza. All rights reserved.
+//  Created by user174461 on 2/8/22.
+//  Copyright © 2022 Polyana Barboza. All rights reserved.
 //
 
 import Foundation
 import Network
 
 class Client {
+    let connection: ClientConnection
+    let host: NWEndpoint.Host
+    let port: NWEndpoint.Port
 
-    init() {
-        let nwConnection = NWConnection(host: "69.160.250.184", port: 8080, using: .tcp)
-        self.connection = Connection(nwConnection: nwConnection)
+    init(host: String, port: UInt16) {
+        self.host = NWEndpoint.Host(host)
+        self.port = NWEndpoint.Port(rawValue: port)!
+        let nwConnection = NWConnection(host: self.host, port: self.port, using: .tcp)
+        connection = ClientConnection(nwConnection: nwConnection)
     }
 
-    let connection: Connection
-
     func start() {
-        self.connection.didStopCallback = self.didStopCallback(error:)
-        self.connection.start()
+        print("\n AQUI client start \n")
+        print("Client started \(host) \(port)")
+        connection.didStopCallback = didStopCallback(error:)
+        connection.start()
+    }
+
+    func stop() {
+        connection.stop()
+    }
+
+    func send(data: Data) {
+        connection.send(data: data)
     }
 
     func didStopCallback(error: Error?) {
@@ -29,12 +42,5 @@ class Client {
         } else {
             exit(EXIT_FAILURE)
         }
-    }
-
-    static func run() {
-        let client = Client()
-        client.start()
-        print("client ok")
-        dispatchMain()
     }
 }

@@ -7,7 +7,10 @@
 //
 
 import UIKit
-import SocketSwift
+//import SocketSwift
+import Foundation
+//import SwiftSocket
+
 
 // Controller of the login screen
 class LoginController: UIViewController, UITextFieldDelegate {
@@ -21,11 +24,16 @@ class LoginController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         self.txtLogin.delegate = self
         self.txtPassword.delegate = self
+    
 
         // Do any additional setup after loading the view.
+        //CFSocketCreate(<#T##allocator: CFAllocator!##CFAllocator!#>, <#T##protocolFamily: Int32##Int32#>, <#T##socketType: Int32##Int32#>, <#T##protocol: Int32##Int32#>, <#T##callBackTypes: CFOptionFlags##CFOptionFlags#>, <#T##callout: CFSocketCallBack!##CFSocketCallBack!##(CFSocket?, CFSocketCallBackType, CFData?, UnsafeRawPointer?, UnsafeMutableRawPointer?) -> Void#>, <#T##context: UnsafePointer<CFSocketContext>!##UnsafePointer<CFSocketContext>!#>)
+        //CFSocketCreateRunLoopSource(<#T##allocator: CFAllocator!##CFAllocator!#>, <#T##s: CFSocket!##CFSocket!#>, <#T##order: CFIndex##CFIndex#>)
+        //CFRunLoopAddSource(<#T##rl: CFRunLoop!##CFRunLoop!#>, <#T##source: CFRunLoopSource!##CFRunLoopSource!#>, <#T##mode: CFRunLoopMode!##CFRunLoopMode!#>)
+        //CFSocketSendData(<#T##s: CFSocket!##CFSocket!#>, <#T##address: CFData!##CFData!#>, <#T##data: CFData!##CFData!#>, <#T##timeout: CFTimeInterval##CFTimeInterval#>)
         //Server.run()
         //Client.run()
-        do {
+        /*do {
             let server = try Socket(.inet, type: .stream, protocol: .tcp) // create server socket
             try server.set(option: .reuseAddress, true) // set SO_REUSEADDR to 1
             try server.bind(port: 8090, address: nil) // bind 'localhost:8090' address to the socket
@@ -42,11 +50,11 @@ class LoginController: UIViewController, UITextFieldDelegate {
             print("criou client e server")
             try client.write(teste)
             print("escreveu")
-            //var buffer = [UInt8](repeating: 0, count: teste.count) // allocate buffer
-            //let numberOfReadBytes = try server.read(&buffer, size: teste.count)
-            try server.accept()
-            
-            try server.read()
+            var buffer = [UInt8](repeating: 0, count: teste.count) // allocate buffer
+            let numberOfReadBytes = try server.read(&buffer, size: teste.count)
+            //try server.accept()
+            print(numberOfReadBytes == teste.count)
+            //try server.read()
             print("leu")
             //print(numberOfReadBytes == teste.count) // true
             //print(buffer == teste) // true
@@ -67,7 +75,7 @@ class LoginController: UIViewController, UITextFieldDelegate {
             server.close()
         } catch {
             print(error)
-        }
+        }*/
 
     }
     

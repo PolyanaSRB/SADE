@@ -33,7 +33,7 @@ class Environment {
         let alertGoal = Goal(name: "AlertGoal") //, status: false)
         
         // set actions
-        let collectAction = CollectorAction(interval: 5)
+        let collectAction = CollectorAction(interval: 50)
         //var actionsVitalSign: [VitalSignAction] = []
         //var alertAction: [AlertAction] = []
         
@@ -60,18 +60,29 @@ class Environment {
         let vitalSignFilter = DefaultDeliberationStrategy()
         let alertFilter = DefaultDeliberationStrategy()
         
+        //set servers
+        let serverCollector = Server(port:9000) //8090, 8091...
+        let serverVitalSign = Server(port:8888)
+        let serverAlert = Server(port:9999)
+        
         //set agents
-        let collectorAgent = Agent(name: "CollectorAgent", env: Environment.environment, goals: [collectGoal], beliefs: [], plans: [collectPlan], beliefRevision: collectorBeliefRevision, optionGeneration: collectorOptionGener, filter: collectorFilter)
+        let collectorAgent = Agent(name: "CollectorAgent", env: Environment.environment, goals: [collectGoal], beliefs: [], plans: [collectPlan], beliefRevision: collectorBeliefRevision, optionGeneration: collectorOptionGener, filter: collectorFilter, server: serverCollector)
         collectorBeliefRevision.setAgent(agent: collectorAgent)
         collectorOptionGener.setAgent(agent: collectorAgent)
         collectorFilter.setAgent(agent: collectorAgent)
         
-        let vitalSignAgent = Agent(name: "VitalSignAgent", env: Environment.environment, goals: [vitalSignGoal], beliefs: [], plans: [vitalSignPlan], beliefRevision: vitalSignBeliefRevision, optionGeneration: vitalSignOptionGener, filter: vitalSignFilter)
+        collectAction.agent = collectorAgent
+        
+        //let aclVSmessage = ACLMessage()
+        //aclVSmessage.content = "Verify anomalies on patient Lucas"
+        //collectorAgent.sendMessage(host: "localhost", port: 8888, message: aclVSmessage)
+        
+        let vitalSignAgent = Agent(name: "VitalSignAgent", env: Environment.environment, goals: [vitalSignGoal], beliefs: [], plans: [vitalSignPlan], beliefRevision: vitalSignBeliefRevision, optionGeneration: vitalSignOptionGener, filter: vitalSignFilter, server: serverVitalSign)
         vitalSignBeliefRevision.setAgent(agent: vitalSignAgent)
         vitalSignOptionGener.setAgent(agent: vitalSignAgent)
         vitalSignFilter.setAgent(agent: vitalSignAgent)
         
-        let alertAgent = Agent(name: "AlertAgent", env: Environment.environment, goals: [alertGoal], beliefs: [], plans: [alertPlan], beliefRevision: alertBeliefRevision, optionGeneration: alertOptionGener, filter: alertFilter)
+        let alertAgent = Agent(name: "AlertAgent", env: Environment.environment, goals: [alertGoal], beliefs: [], plans: [alertPlan], beliefRevision: alertBeliefRevision, optionGeneration: alertOptionGener, filter: alertFilter, server: serverAlert)
         alertBeliefRevision.setAgent(agent: alertAgent)
         alertOptionGener.setAgent(agent: alertAgent)
         alertFilter.setAgent(agent: alertAgent)
