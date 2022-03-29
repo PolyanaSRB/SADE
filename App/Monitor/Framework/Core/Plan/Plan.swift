@@ -11,13 +11,13 @@ import Foundation
 class Plan { //protocol?
     var name: String
     var goal: Goal
-    var priority: Int
+    //var priority: Int
     var actions: [Action] = []
-    //var status: StatusPlan = StatusPlan.neverExecuted
+    var status: StatusPlan = StatusPlan.neverExecuted
     
-    init(name: String, priority: Int, goal: Goal){
+    init(name: String, goal: Goal){
         self.name = name
-        self.priority = priority
+        //self.priority = priority
         self.goal = goal
     }
     
@@ -34,4 +34,5 @@ enum StatusPlan {
     case executed
     case executing
     case neverExecuted
+    case fail
 }

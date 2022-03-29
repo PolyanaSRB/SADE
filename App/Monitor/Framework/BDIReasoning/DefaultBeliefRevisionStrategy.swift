@@ -9,13 +9,13 @@
 import Foundation
 
 class DefaultBeliefRevisionStrategy: AbstractReasoningStrategy, BeliefRevisionStrategy {
-    
+    /// coment da funcao
     func reviewBeliefs(beliefs: [Belief]) {
         // implement function reviewBeliefs - revisar os beliefs da base de beliefs do agente/capability, checando inconsistencias, associando timestamp, ...
         for belief in beliefs {
-            // implementar acao para revisar beliefs
-            // is available?
-                // return availables?
+            if belief.data != nil {
+                belief.available = true
+            }
         }
     }
 }

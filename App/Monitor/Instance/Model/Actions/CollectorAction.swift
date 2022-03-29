@@ -17,22 +17,23 @@ class CollectorAction : CyclicAction {
     // Function to collect new vital signs for each patient being monitored by health care worker logged in the app and to update monitor charts, adding new entries
     @objc override func runAction() {
         print("COVID19collector")
-        
+        let msgTo = self.agent.beliefs["msgTo"]?.data
+        let agentReceiver = Environment.environment.whitePages(agentName: msgTo as! String) //Environment.environment.agents[msgTo as! String]
+        var patients: [Patient] = []
         for patient in COVID19UsefulData.shared.patients {
             COVID19DAOPatientVitalSign.getVitalSign(patient: patient, option: "last")
-            
-            print(patient.name)
-            //DispatchQueue.main.asyncAfter(deadline: .now() + 30) {
-            let aclVSmessage = ACLMessage()
-            aclVSmessage.content = "Verify anomalies on patient \(patient.name)"
-            self.agent.sendMessage(host: "localhost", port: 8888, message: aclVSmessage)
-            
-            let VSaction = VitalSignAction()
-            VSaction.parameter = patient
-            Environment.environment.agents["VitalSignAgent"]?.plans[0].goal.status = StatusGoal.execute
-            Environment.environment.agents["VitalSignAgent"]?.plans[0].actions.append(VSaction)
-            //}
+            patients.append(patient)
         }
+        let VSaction = VitalSignAction() //AnomaliesAction()
+        VSaction.parameter = patients as AnyObject
+        VSaction.agent = agentReceiver
+        
+        agentReceiver?.goals[0].plans[0]?.status = StatusPlan.neverExecuted
+        agentReceiver?.plans[0].actions.append(VSaction)
+        let aclVSmessage = ACLMessage()
+        aclVSmessage.content = "Verify anomalies on patients"
+        let port = agentReceiver?.port
+        self.agent.sendMessage(host: "localhost", port: port!, message: aclVSmessage)
 
         if (CollectorAction.monitorController != nil) {
             let patientMonitor = TabBarControllerViewController.patientSelected

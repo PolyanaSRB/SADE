@@ -11,11 +11,27 @@ import Foundation
 class SequencePlan: Plan {
     override func executePlan(){  //SequencePlan
         // varre o vetor de ações e chama a execução
-        //self.status = .executing
+        var newActions: [Action] = []
+        
         for action in self.actions {
-            action.start()
+            if action.testPreCondition() {
+                action.start()
+                if !action.testPosCondition() {
+                    self.status = .fail
+                    newActions.append(action)
+                }
+            }
+            else {
+                newActions.append(action)
+            }
         }
-        self.actions = []
-        //self.status = .executed
+        self.actions = newActions
+        
+        if (newActions.isEmpty) {
+            self.status = .executed
+        }
+        else if (self.status != .fail) {
+            self.status = .neverExecuted // like a 'try again' to the actions that were not executed
+        }
     }
 }

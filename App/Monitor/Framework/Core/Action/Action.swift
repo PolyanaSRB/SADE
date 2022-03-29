@@ -16,6 +16,30 @@ class Action {
     /*init(parameter: AnyObject?, preCondition: [Condition?], posCondition: [Condition?]) {
         
     }*/
+    // TODO tirar test e colocar outro nome - analyze
+    func testPreCondition() -> Bool {
+        var flag = true
+        if !self.preCondition.isEmpty {
+            for condition in self.preCondition {
+                if !condition.testCondition() {
+                    flag = false
+                }
+            }
+        }
+        return flag
+    }
+    
+    func testPosCondition() -> Bool {
+        var flag = true
+        if !self.posCondition.isEmpty {
+            for condition in self.posCondition {
+                if !condition.testCondition() {
+                    flag = false
+                }
+            }
+        }
+        return flag
+    }
     
     func start() {
         print("Implemente sua função start")

@@ -11,14 +11,28 @@ import Foundation
 class DefaultOptionGenerationStrategy: AbstractReasoningStrategy, OptionGenerationStrategy {
     func reviewGoals(goals: [Goal]) {
         // implement function reviewGoals - analisar goals que ainda nao foram alcancados e escolher aqueles a serem eliminados e talvez gerar novos goals
+        //print("option generation")
         for goal in goals {
             // implementar acao para revisar goals
-            if goal.status == StatusGoal.waiting {
-                
+            var flag = true
+            for plan in goal.plans.values {
+                //print(plan.status)
+                if plan.status == StatusPlan.neverExecuted {
+                    goal.status = StatusGoal.waiting
+                    flag = false
+                    break
+                }
+                if plan.status == StatusPlan.executing {
+                    goal.status = StatusGoal.executing
+                    flag = false
+                    break
+                }
             }
-            else if goal.status == StatusGoal.failed {
-                
+            //print(flag)
+            if flag {
+                goal.status = StatusGoal.success
             }
+            
             // return goals waiting primeiro
         }
     }

@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		48057A8F25DDDA7600278B54 /* LeafBelief.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48057A8E25DDDA7600278B54 /* LeafBelief.swift */; };
-		48057A9225DDDA9600278B54 /* CompositeBelief.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48057A9125DDDA9600278B54 /* CompositeBelief.swift */; };
 		480CB598267123E900001D2F /* BeliefRevisionStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 480CB597267123E900001D2F /* BeliefRevisionStrategy.swift */; };
 		480CB59B2671251D00001D2F /* ReasoningStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 480CB59A2671251D00001D2F /* ReasoningStrategy.swift */; };
 		480CB59F267125EA00001D2F /* AbstractReasoningStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 480CB59E267125EA00001D2F /* AbstractReasoningStrategy.swift */; };
@@ -56,14 +54,12 @@
 		486F89B824AD406700556E00 /* Patient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486F89B724AD406700556E00 /* Patient.swift */; };
 		486F89BA24AD436D00556E00 /* VitalSignType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486F89B924AD436D00556E00 /* VitalSignType.swift */; };
 		486F89BC24AD446E00556E00 /* PatientVitalSign.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486F89BB24AD446E00556E00 /* PatientVitalSign.swift */; };
-		486F89BE24AD46DB00556E00 /* CollectorAgent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486F89BD24AD46DB00556E00 /* CollectorAgent.swift */; };
 		486F89C424AD4D0900556E00 /* DAONewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486F89C324AD4D0900556E00 /* DAONewData.swift */; };
 		4880D8B224AE6EB60087743E /* CollectorAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4880D8B124AE6EB60087743E /* CollectorAction.swift */; };
+		488A0F5527DD1A03003D9489 /* AnomaliesAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488A0F5427DD1A03003D9489 /* AnomaliesAction.swift */; };
 		4898DD5024B011C50020E6A7 /* COVID19Patient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4898DD4F24B011C50020E6A7 /* COVID19Patient.swift */; };
 		4898DD5224B011F10020E6A7 /* COVID19UsefulData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4898DD5124B011F10020E6A7 /* COVID19UsefulData.swift */; };
 		4898DD5424B012060020E6A7 /* COVID19Monitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4898DD5324B012060020E6A7 /* COVID19Monitor.swift */; };
-		48C1B82B25DEB74B00725A90 /* VitalSignAgent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48C1B82A25DEB74B00725A90 /* VitalSignAgent.swift */; };
-		48C1B82E25DEB76400725A90 /* AlertAgent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48C1B82D25DEB76400725A90 /* AlertAgent.swift */; };
 		48C1B83125DED42900725A90 /* SequencePlan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48C1B83025DED42900725A90 /* SequencePlan.swift */; };
 		48C1B83425DED5A600725A90 /* OneShotAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48C1B83325DED5A600725A90 /* OneShotAction.swift */; };
 		48C1B83725DED97B00725A90 /* CyclicAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48C1B83625DED97B00725A90 /* CyclicAction.swift */; };
@@ -87,8 +83,6 @@
 
 /* Begin PBXFileReference section */
 		285445ADCE937761C64D1276 /* Pods-Monitor.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Monitor.debug.xcconfig"; path = "Target Support Files/Pods-Monitor/Pods-Monitor.debug.xcconfig"; sourceTree = "<group>"; };
-		48057A8E25DDDA7600278B54 /* LeafBelief.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeafBelief.swift; sourceTree = "<group>"; };
-		48057A9125DDDA9600278B54 /* CompositeBelief.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompositeBelief.swift; sourceTree = "<group>"; };
 		480CB597267123E900001D2F /* BeliefRevisionStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeliefRevisionStrategy.swift; sourceTree = "<group>"; };
 		480CB59A2671251D00001D2F /* ReasoningStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReasoningStrategy.swift; sourceTree = "<group>"; };
 		480CB59E267125EA00001D2F /* AbstractReasoningStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbstractReasoningStrategy.swift; sourceTree = "<group>"; };
@@ -128,14 +122,12 @@
 		486F89B724AD406700556E00 /* Patient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Patient.swift; sourceTree = "<group>"; };
 		486F89B924AD436D00556E00 /* VitalSignType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VitalSignType.swift; sourceTree = "<group>"; };
 		486F89BB24AD446E00556E00 /* PatientVitalSign.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatientVitalSign.swift; sourceTree = "<group>"; };
-		486F89BD24AD46DB00556E00 /* CollectorAgent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectorAgent.swift; sourceTree = "<group>"; };
 		486F89C324AD4D0900556E00 /* DAONewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DAONewData.swift; sourceTree = "<group>"; };
 		4880D8B124AE6EB60087743E /* CollectorAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectorAction.swift; sourceTree = "<group>"; };
+		488A0F5427DD1A03003D9489 /* AnomaliesAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnomaliesAction.swift; sourceTree = "<group>"; };
 		4898DD4F24B011C50020E6A7 /* COVID19Patient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = COVID19Patient.swift; sourceTree = "<group>"; };
 		4898DD5124B011F10020E6A7 /* COVID19UsefulData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = COVID19UsefulData.swift; sourceTree = "<group>"; };
 		4898DD5324B012060020E6A7 /* COVID19Monitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = COVID19Monitor.swift; sourceTree = "<group>"; };
-		48C1B82A25DEB74B00725A90 /* VitalSignAgent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VitalSignAgent.swift; sourceTree = "<group>"; };
-		48C1B82D25DEB76400725A90 /* AlertAgent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertAgent.swift; sourceTree = "<group>"; };
 		48C1B83025DED42900725A90 /* SequencePlan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SequencePlan.swift; sourceTree = "<group>"; };
 		48C1B83325DED5A600725A90 /* OneShotAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneShotAction.swift; sourceTree = "<group>"; };
 		48C1B83625DED97B00725A90 /* CyclicAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CyclicAction.swift; sourceTree = "<group>"; };
@@ -246,17 +238,6 @@
 			path = COVID19;
 			sourceTree = "<group>";
 		};
-		483BA23C25DF3B7500534639 /* Agents */ = {
-			isa = PBXGroup;
-			children = (
-				486F89BD24AD46DB00556E00 /* CollectorAgent.swift */,
-				48C1B82A25DEB74B00725A90 /* VitalSignAgent.swift */,
-				48C1B82D25DEB76400725A90 /* AlertAgent.swift */,
-				483BA23D25DF3BA800534639 /* Actions */,
-			);
-			path = Agents;
-			sourceTree = "<group>";
-		};
 		483BA23D25DF3BA800534639 /* Actions */ = {
 			isa = PBXGroup;
 			children = (
@@ -273,15 +254,16 @@
 				483DB79825DD668A00522FBA /* Agent.swift */,
 				483DB79425DD62E300522FBA /* Environment.swift */,
 				483DB79B25DD6BEB00522FBA /* Goal.swift */,
-				4884E9F225DF0C35003FC838 /* Belief */,
 				4884E9F325DF0C4E003FC838 /* Plan */,
+				483DB79E25DD6BFC00522FBA /* Belief.swift */,
 				4884E9F125DF0C08003FC838 /* Action */,
 				483DB7A725DD6C3C00522FBA /* Condition.swift */,
+				4878B04D2695F3490035E52C /* Agent Management */,
 			);
 			path = Core;
 			sourceTree = "<group>";
 		};
-		486F89AC24AD377200556E00 /* Remote Monitoring Health */ = {
+		486F89AC24AD377200556E00 /* Health */ = {
 			isa = PBXGroup;
 			children = (
 				486F89B124AD37E900556E00 /* HealthCareWorker.swift */,
@@ -295,17 +277,21 @@
 				486F89C324AD4D0900556E00 /* DAONewData.swift */,
 				48613D01270DCAB0005490EA /* HealthKitSetupAssistant.swift */,
 				48613D04270DCD03005490EA /* HealthKitReaderWriter.swift */,
+				488A0F5427DD1A03003D9489 /* AnomaliesAction.swift */,
 			);
-			path = "Remote Monitoring Health";
+			path = Health;
 			sourceTree = "<group>";
 		};
-		4878B04C2695F2F40035E52C /* FIPA */ = {
+		4878B04C2695F2F40035E52C /* Communication */ = {
 			isa = PBXGroup;
 			children = (
-				4878B04D2695F3490035E52C /* Agent Management */,
-				4878B04E2695F3630035E52C /* Communication */,
+				480F41B727B34EB700F43358 /* ACLMessage.swift */,
+				480F41AB27B342DC00F43358 /* Server.swift */,
+				480F41AE27B342ED00F43358 /* ServerConnection.swift */,
+				480F41B127B3432100F43358 /* Client.swift */,
+				480F41B427B3432F00F43358 /* ClientConnection.swift */,
 			);
-			path = FIPA;
+			path = Communication;
 			sourceTree = "<group>";
 		};
 		4878B04D2695F3490035E52C /* Agent Management */ = {
@@ -313,34 +299,6 @@
 			children = (
 			);
 			path = "Agent Management";
-			sourceTree = "<group>";
-		};
-		4878B04E2695F3630035E52C /* Communication */ = {
-			isa = PBXGroup;
-			children = (
-				4878B0502695F3BD0035E52C /* Agent Communication */,
-				4878B04F2695F3A90035E52C /* Agent Message Transport */,
-			);
-			path = Communication;
-			sourceTree = "<group>";
-		};
-		4878B04F2695F3A90035E52C /* Agent Message Transport */ = {
-			isa = PBXGroup;
-			children = (
-				480F41AB27B342DC00F43358 /* Server.swift */,
-				480F41AE27B342ED00F43358 /* ServerConnection.swift */,
-				480F41B127B3432100F43358 /* Client.swift */,
-				480F41B427B3432F00F43358 /* ClientConnection.swift */,
-			);
-			path = "Agent Message Transport";
-			sourceTree = "<group>";
-		};
-		4878B0502695F3BD0035E52C /* Agent Communication */ = {
-			isa = PBXGroup;
-			children = (
-				480F41B727B34EB700F43358 /* ACLMessage.swift */,
-			);
-			path = "Agent Communication";
 			sourceTree = "<group>";
 		};
 		4884E9F125DF0C08003FC838 /* Action */ = {
@@ -351,16 +309,6 @@
 				48C1B83625DED97B00725A90 /* CyclicAction.swift */,
 			);
 			path = Action;
-			sourceTree = "<group>";
-		};
-		4884E9F225DF0C35003FC838 /* Belief */ = {
-			isa = PBXGroup;
-			children = (
-				483DB79E25DD6BFC00522FBA /* Belief.swift */,
-				48057A9125DDDA9600278B54 /* CompositeBelief.swift */,
-				48057A8E25DDDA7600278B54 /* LeafBelief.swift */,
-			);
-			path = Belief;
 			sourceTree = "<group>";
 		};
 		4884E9F325DF0C4E003FC838 /* Plan */ = {
@@ -385,8 +333,8 @@
 			children = (
 				483DB79325DD61BC00522FBA /* Core */,
 				480CB5962671231E00001D2F /* BDIReasoning */,
-				4878B04C2695F2F40035E52C /* FIPA */,
-				486F89AC24AD377200556E00 /* Remote Monitoring Health */,
+				4878B04C2695F2F40035E52C /* Communication */,
+				486F89AC24AD377200556E00 /* Health */,
 			);
 			path = Framework;
 			sourceTree = "<group>";
@@ -437,7 +385,7 @@
 		C918ACB02450CF4300D8ED1B /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				483BA23C25DF3B7500534639 /* Agents */,
+				483BA23D25DF3BA800534639 /* Actions */,
 				483650DB25E2BA3E00FF7982 /* COVID19 */,
 			);
 			path = Model;
@@ -594,20 +542,16 @@
 				4898DD5224B011F10020E6A7 /* COVID19UsefulData.swift in Sources */,
 				483DB79525DD62E300522FBA /* Environment.swift in Sources */,
 				480CB5B42671295400001D2F /* DefaultPlanSelectionStrategy.swift in Sources */,
-				486F89BE24AD46DB00556E00 /* CollectorAgent.swift in Sources */,
 				48E5BBF224BBCD34001758AA /* COVID19DAOGetPatients.swift in Sources */,
 				485DF0D924BBB8D800EFD88A /* COVID19DAOOdentifyHospital.swift in Sources */,
 				4880D8B224AE6EB60087743E /* CollectorAction.swift in Sources */,
 				48EE81BA24A428F800F30D54 /* HospitalPatientsController.swift in Sources */,
-				48C1B82B25DEB74B00725A90 /* VitalSignAgent.swift in Sources */,
 				48CB576224B2BB3E00245446 /* ProfileController.swift in Sources */,
 				48E894F024BD5CC0005F0573 /* COVID19DAOPatientVitalSign.swift in Sources */,
-				48C1B82E25DEB76400725A90 /* AlertAgent.swift in Sources */,
 				480F41B827B34EB700F43358 /* ACLMessage.swift in Sources */,
 				48CB576424B2BC0000245446 /* PatientInfosController.swift in Sources */,
 				48C1B83425DED5A600725A90 /* OneShotAction.swift in Sources */,
 				483DB79C25DD6BEB00522FBA /* Goal.swift in Sources */,
-				48057A8F25DDDA7600278B54 /* LeafBelief.swift in Sources */,
 				486F89C424AD4D0900556E00 /* DAONewData.swift in Sources */,
 				48613D05270DCD03005490EA /* HealthKitReaderWriter.swift in Sources */,
 				480F41B527B3432F00F43358 /* ClientConnection.swift in Sources */,
@@ -617,7 +561,6 @@
 				483DB7A525DD6C2B00522FBA /* Action.swift in Sources */,
 				483DB7A825DD6C3C00522FBA /* Condition.swift in Sources */,
 				4898DD5424B012060020E6A7 /* COVID19Monitor.swift in Sources */,
-				48057A9225DDDA9600278B54 /* CompositeBelief.swift in Sources */,
 				480CB59F267125EA00001D2F /* AbstractReasoningStrategy.swift in Sources */,
 				C9BDEB79246F524200A39C51 /* MonitorController.swift in Sources */,
 				483BA24025DF459D00534639 /* VitalSignAction.swift in Sources */,
@@ -631,6 +574,7 @@
 				486F89BA24AD436D00556E00 /* VitalSignType.swift in Sources */,
 				480F41B227B3432100F43358 /* Client.swift in Sources */,
 				480CB5A8267127E000001D2F /* DefaultOptionGenerationStrategy.swift in Sources */,
+				488A0F5527DD1A03003D9489 /* AnomaliesAction.swift in Sources */,
 				486F89B824AD406700556E00 /* Patient.swift in Sources */,
 				480CB5AE2671288100001D2F /* DefaultDeliberationStrategy.swift in Sources */,
 				480F41AC27B342DC00F43358 /* Server.swift in Sources */,

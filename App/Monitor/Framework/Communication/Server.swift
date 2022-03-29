@@ -12,12 +12,14 @@ import Network
 class Server {
     let port: NWEndpoint.Port
     let listener: NWListener?
+    let agent: Agent
 
     private var connectionsByID: [Int: ServerConnection] = [:]
 
-    init(port: UInt16) {
+    init(port: UInt16, agent: Agent) {
         self.port = NWEndpoint.Port(rawValue: port)!
         self.listener = try! NWListener(using: .tcp, on: self.port) //fazer tratamento nesse try
+        self.agent = agent
     }
 
     func start() throws {
@@ -40,7 +42,7 @@ class Server {
     }
 
     private func didAccept(nwConnection: NWConnection) {
-        let connection = ServerConnection(nwConnection: nwConnection)
+        let connection = ServerConnection(nwConnection: nwConnection, agent: self.agent)
         self.connectionsByID[connection.id] = connection
         connection.didStopCallback = { _ in
             self.connectionDidStop(connection)

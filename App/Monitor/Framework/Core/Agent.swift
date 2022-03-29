@@ -9,22 +9,21 @@
 import Foundation
 import Network
 
-class Agent {
-    var name: String  // {get set}
+class Agent: Thread {
+    var agentName: String
     var env: Environment
     var goals: [Goal]
-    var beliefs: [Belief]
+    var beliefs: [String: Belief]
     var plans: [Plan]
-    var interval: Double = 1
-    var timer: Timer?
     var beliefRevision: BeliefRevisionStrategy
     var optionGeneration: OptionGenerationStrategy
     var filter: DeliberationStrategy
-    var server: Server //TODO passar apenas porta
+    var planSelection: PlanSelectionStrategy
+    var port: UInt16
     var clients: [Client] = []
     
-    init(name: String, env: Environment, goals: [Goal], beliefs: [Belief], plans: [Plan], beliefRevision: BeliefRevisionStrategy, optionGeneration: OptionGenerationStrategy, filter: DeliberationStrategy, server: Server) { //}, server: Socket, client: Socket) {
-        self.name = name
+    init(agentName: String, env: Environment, goals: [Goal], beliefs: [String: Belief], plans: [Plan], beliefRevision: BeliefRevisionStrategy, optionGeneration: OptionGenerationStrategy, filter: DeliberationStrategy, planSelection: PlanSelectionStrategy, port: UInt16) {
+        self.agentName = agentName
         self.env = env
         self.goals = goals
         self.beliefs = beliefs
@@ -32,62 +31,49 @@ class Agent {
         self.beliefRevision = beliefRevision
         self.optionGeneration  = optionGeneration
         self.filter = filter
-        self.server = server
+        self.planSelection = planSelection
+        self.port = port
         
-        try! self.server.start()
+        super.init()
+        Environment.environment.agents[self.agentName] = self
+        self.createServer(port: port)
+    }
+    
+    func createServer(port: UInt16) {
+        let server = Server(port: port, agent: self)
+        try! server.start()
     }
     
     func addGoal(goal: Goal){
         self.goals.append(goal)
     }
     
-    func addBelief(belief: Belief){
-        self.beliefs.append(belief)
+    func addBelief(name: String, belief: Belief){
+        self.beliefs[name] = belief
     }
     
     func addPlan(plan: Plan){
         self.plans.append(plan)
     }
     
-    func start(){
-        self.timer = Timer.scheduledTimer(timeInterval: self.interval, target: self, selector: #selector(runBDICycle), userInfo: nil, repeats: true) // posso invalidar o timer e colocar um tempo maior, se necessarios (caso os planos nao tenham acabado de executar, por exemplo
+    override func start(){
+        super.start()
+        runBDICycle()
     }
     
     func stop() {
-        self.timer?.invalidate()
+        self.cancel()
     }
     
     @objc func runBDICycle(){
-        /*for plan in self.plans{
-            if plan.status == .executing {
-                return
-            }
-        }*/
-        self.beliefRevision.reviewBeliefs(beliefs: self.beliefs) //pegar os retornos pra passar pro proximo passo
-        self.optionGeneration.reviewGoals(goals: self.goals)
+        self.beliefRevision.reviewBeliefs(beliefs: Array(self.beliefs.values)) //pegar os retornos pra passar pro proximo passo
+        self.optionGeneration.reviewGoals(goals: self.goals) // revisa goals vendo os que tem todos os planos ja executados e mudando seu status
         self.filter.filter(goals: self.goals)
-        
-        runPlans()
-        
-    }
-    
-    func runPlans(){  // default plan selection strategy (sequence)
-        for plan in self.plans {
-            if plan.goal.status == StatusGoal.execute {
-                //&& plan.status == .neverExecuted {
-                plan.goal.status = StatusGoal.executing // goal e plan estao 1 pra 1 - plan com status e em reviewGoals, verificar se todos os planos do goal estao success
-                plan.executePlan()
-                plan.goal.status = StatusGoal.success
-            }
-        }
+        self.planSelection.selectPlan(plans: self.plans)
         
     }
     
-    func sendMessage(host:String, port:UInt16, message: ACLMessage) { // como passar ACLMessage? a funcao send do Network tem parametro `Data?`
-        // criar propriedade de array de clients. aqui passar pelo array pra ver se j[a tem um client com essa conexao
-        // client: [Client]
-        //cria Client e send message
-        //let savedData = NSKeyedArchiver.archivedData(withRootObject: message)
+    func sendMessage(host:String, port:UInt16, message: ACLMessage) {
         let savedData = try! NSKeyedArchiver.archivedData(withRootObject: message, requiringSecureCoding: false)
         var aux = false
         for client in self.clients {

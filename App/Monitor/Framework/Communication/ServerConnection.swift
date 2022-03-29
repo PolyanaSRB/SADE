@@ -16,11 +16,13 @@ class ServerConnection {
     private static var nextID: Int = 0
     let  connection: NWConnection
     let id: Int
+    var agent: Agent
 
-    init(nwConnection: NWConnection) {
+    init(nwConnection: NWConnection, agent: Agent) {
         connection = nwConnection
         id = ServerConnection.nextID
         ServerConnection.nextID += 1
+        self.agent = agent
     }
 
     var didStopCallback: ((Error?) -> Void)? = nil
@@ -52,8 +54,9 @@ class ServerConnection {
             if let data = data, !data.isEmpty {
                 //let message = String(data: data, encoding: .utf8)
                 let acl = NSKeyedUnarchiver.unarchiveObject(with: data) as? ACLMessage
+                // TODO talvez adicionar a msg recebida na lista de mensagens do agent (criar essa prop)
                 let content = acl!.content
-                //let l = acl!.len
+                self.agent.runBDICycle()
                 print("\n AQUI server connection setupReceive \n")
                 print("connection \(self.id) did receive, data: \(data as NSData) string: \(content ?? "-")")
                 //self.send(data: data)

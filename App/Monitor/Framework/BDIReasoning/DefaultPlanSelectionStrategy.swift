@@ -9,7 +9,13 @@
 import Foundation
 
 class DefaultPlanSelectionStrategy: AbstractReasoningStrategy, PlanSelectionStrategy {
-    func selectPlan() {
+    func selectPlan(plans: [Plan]) {
         // implements function selectPlan - selecionar plano, dentro de um conjunto de planos dados, que sera executado para alcancar um goal dado - definir a estrategia de selecao (primeiro da lista? aleatoria?)
+        for plan in plans {
+            if (plan.goal.status == StatusGoal.execute) && (plan.status == StatusPlan.neverExecuted) && (!plan.actions.isEmpty) {
+                plan.status = StatusPlan.executing
+                plan.executePlan()
+            }
+        }
     }
 }

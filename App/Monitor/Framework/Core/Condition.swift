@@ -8,10 +8,6 @@
 
 import Foundation
 
-class Condition { //protocol
-    var result: Bool = false
-    
-    func testCondition(){
-        self.result = true
-    }
+protocol Condition {
+    func testCondition() -> Bool
 }
