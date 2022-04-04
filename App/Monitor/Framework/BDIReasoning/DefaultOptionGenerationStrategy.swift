@@ -8,15 +8,14 @@
 
 import Foundation
 
+/// DefaultOptionGenerationStrategy class is a default class of the OptionGenerationStrategy protocol with the reviewGoals function already implemented.
 class DefaultOptionGenerationStrategy: AbstractReasoningStrategy, OptionGenerationStrategy {
+    /// Loops through the goals array and reviews it sequentially, updating its status.
+    /// - parameter goals: array of Goals to be reviewed
     func reviewGoals(goals: [Goal]) {
-        // implement function reviewGoals - analisar goals que ainda nao foram alcancados e escolher aqueles a serem eliminados e talvez gerar novos goals
-        //print("option generation")
         for goal in goals {
-            // implementar acao para revisar goals
             var flag = true
             for plan in goal.plans.values {
-                //print(plan.status)
                 if plan.status == StatusPlan.neverExecuted {
                     goal.status = StatusGoal.waiting
                     flag = false
@@ -28,12 +27,9 @@ class DefaultOptionGenerationStrategy: AbstractReasoningStrategy, OptionGenerati
                     break
                 }
             }
-            //print(flag)
             if flag {
                 goal.status = StatusGoal.success
             }
-            
-            // return goals waiting primeiro
         }
     }
 }

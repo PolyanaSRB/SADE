@@ -8,10 +8,11 @@
 
 import Foundation
 
+/// DefaultBeliefRevisionStrategy class is a default class of the BeliefRevisionStrategy protocol with the reviewBeliefs function already implemented.
 class DefaultBeliefRevisionStrategy: AbstractReasoningStrategy, BeliefRevisionStrategy {
-    /// coment da funcao
+    /// Loops through the beliefs array and reviews it sequentially. checking if there is a data into it.
+    /// - parameter beliefs: array of Beliefs to be reviewed
     func reviewBeliefs(beliefs: [Belief]) {
-        // implement function reviewBeliefs - revisar os beliefs da base de beliefs do agente/capability, checando inconsistencias, associando timestamp, ...
         for belief in beliefs {
             if belief.data != nil {
                 belief.available = true

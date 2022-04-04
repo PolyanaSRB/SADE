@@ -84,7 +84,7 @@ class LoginController: UIViewController, UITextFieldDelegate {
         let collectGoal = Goal(name: "CollectGoal")
         let vitalSignGoal = Goal(name: "VitalSignGoal")
         let alertGoal = Goal(name: "AlertGoal")
-        Environment.environment.goals = [collectGoal, vitalSignGoal, alertGoal]
+        //Environment.environment.goals = [collectGoal, vitalSignGoal, alertGoal]
         
         // set actions
         let collectAction = CollectorAction(interval: 30)
@@ -121,37 +121,18 @@ class LoginController: UIViewController, UITextFieldDelegate {
         let vitalSignPlanSelection = DefaultPlanSelectionStrategy()
         let alertPlanSelection = DefaultPlanSelectionStrategy()
         
-        //set servers
-        //let serverCollector = Server(port:9000) //8090, 8091...
-        //let serverVitalSign = Server(port:8888)
-        //let serverAlert = Server(port:9999)
-        
         //set agents
-        let collectorAgent = Agent(agentName: "CollectorAgent", env: Environment.environment, goals: [collectGoal], beliefs: [:], plans: [collectPlan], beliefRevision: collectorBeliefRevision, optionGeneration: collectorOptionGener, filter: collectorFilter, planSelection: collectorPlanSelection, port: 9000) // agente se autocadastrar no ambiente
-        collectorBeliefRevision.setAgent(agent: collectorAgent)
-        collectorOptionGener.setAgent(agent: collectorAgent)
-        collectorFilter.setAgent(agent: collectorAgent)
-        collectorPlanSelection.setAgent(agent: collectorAgent)
+        let collectorAgent = Agent(agentName: "CollectorAgent", goals: [collectGoal], beliefs: [:], plans: [collectPlan], beliefRevision: collectorBeliefRevision, optionGeneration: collectorOptionGener, filter: collectorFilter, planSelection: collectorPlanSelection, port: 9000)
         
         collectAction.agent = collectorAgent
         
-        let vitalSignAgent = Agent(agentName: "VitalSignAgent", env: Environment.environment, goals: [vitalSignGoal], beliefs: [:], plans: [vitalSignPlan], beliefRevision: vitalSignBeliefRevision, optionGeneration: vitalSignOptionGener, filter: vitalSignFilter, planSelection: vitalSignPlanSelection, port: 8888)
-        vitalSignBeliefRevision.setAgent(agent: vitalSignAgent)
-        vitalSignOptionGener.setAgent(agent: vitalSignAgent)
-        vitalSignFilter.setAgent(agent: vitalSignAgent)
-        vitalSignPlanSelection.setAgent(agent: vitalSignAgent)
-        //vitalSignAgent.interval = 120
-        
+        let vitalSignAgent = Agent(agentName: "VitalSignAgent", goals: [vitalSignGoal], beliefs: [:], plans: [vitalSignPlan], beliefRevision: vitalSignBeliefRevision, optionGeneration: vitalSignOptionGener, filter: vitalSignFilter, planSelection: vitalSignPlanSelection, port: 8888)
+
         let msgtoBeliefCollector = Belief()
         msgtoBeliefCollector.data = vitalSignAgent.agentName
         collectorAgent.addBelief(name: "msgTo", belief: msgtoBeliefCollector)
         
-        let alertAgent = Agent(agentName: "AlertAgent", env: Environment.environment, goals: [alertGoal], beliefs: [:], plans: [alertPlan], beliefRevision: alertBeliefRevision, optionGeneration: alertOptionGener, filter: alertFilter, planSelection: alertPlanSelection, port: 9999)
-        alertBeliefRevision.setAgent(agent: alertAgent)
-        alertOptionGener.setAgent(agent: alertAgent)
-        alertFilter.setAgent(agent: alertAgent)
-        alertPlanSelection.setAgent(agent: alertAgent)
-        //alertAgent.interval = 120
+        let alertAgent = Agent(agentName: "AlertAgent", goals: [alertGoal], beliefs: [:], plans: [alertPlan], beliefRevision: alertBeliefRevision, optionGeneration: alertOptionGener, filter: alertFilter, planSelection: alertPlanSelection, port: 9999)
         
         let msgtoBeliefVS = Belief()
         msgtoBeliefVS.data = alertAgent.agentName

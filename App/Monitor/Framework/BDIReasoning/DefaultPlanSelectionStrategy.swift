@@ -8,9 +8,11 @@
 
 import Foundation
 
+/// DefaultPlanSelectionStrategy class is a default class of the PlanSelectionStrategy protocol with the selectPlan function already implemented.
 class DefaultPlanSelectionStrategy: AbstractReasoningStrategy, PlanSelectionStrategy {
+    /// Loops through the plans array and executes it sequentially, considering three conditions: the status of the Goal related to it; its status; and its not empty Actions array.
+    /// - parameter plans: array of Plans to be selected and executed
     func selectPlan(plans: [Plan]) {
-        // implements function selectPlan - selecionar plano, dentro de um conjunto de planos dados, que sera executado para alcancar um goal dado - definir a estrategia de selecao (primeiro da lista? aleatoria?)
         for plan in plans {
             if (plan.goal.status == StatusGoal.execute) && (plan.status == StatusPlan.neverExecuted) && (!plan.actions.isEmpty) {
                 plan.status = StatusPlan.executing

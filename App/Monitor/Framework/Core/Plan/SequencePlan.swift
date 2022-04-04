@@ -8,15 +8,16 @@
 
 import Foundation
 
+/// Type of Plan class with a default executePlan function already implemented, which executes the actions of a plan in sequence
 class SequencePlan: Plan {
-    override func executePlan(){  //SequencePlan
-        // varre o vetor de ações e chama a execução
+    /// Loops through the actions array and executes it in the order it appears
+    override func executePlan(){
         var newActions: [Action] = []
         
         for action in self.actions {
-            if action.testPreCondition() {
+            if action.preConditionAnalysis() {
                 action.start()
-                if !action.testPosCondition() {
+                if !action.posConditionAnalysis() {
                     self.status = .fail
                     newActions.append(action)
                 }

@@ -8,12 +8,13 @@
 
 import Foundation
 
+/// DefaultDeliberationStrategy class is a default class of the DeliberationStrategy protocol with the filter function already implemented.
 class DefaultDeliberationStrategy: AbstractReasoningStrategy, DeliberationStrategy {
+    /// Filters a set of goals and turns it into intentions by turning the ones with statuses waiting to execute.
+    /// - parameter goals: array of Goals to be filtered
     func filter(goals: [Goal]) {
-        // implements function filter - transformar desejos (goals) em intencoes - selecionar subconjunto de goals que devem ser tentados (intencoes) do conjunto de goals - os nao selecionados tem seu status setado pra waiting
         for goal in goals {
             if goal.status == StatusGoal.waiting {
-                // implementar condicao para que seja executado e condicao para que saia de execute para waiting
                 goal.status = StatusGoal.execute
             }
         }

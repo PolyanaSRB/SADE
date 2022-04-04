@@ -8,10 +8,16 @@
 
 import Foundation
 
-// Class for nurses, inheriting properties from HealthCareWorker class added by two new properties for nurses' register
+/// Class for nurses, inheriting properties from HealthCareWorker class added by two new properties for nurses' register
 class Nurse : HealthCareWorker {
+    /// register number in the country's registry of nurses
     var corem: String
     
+    /// - parameter email: email to contact or to login
+    /// - parameter passwork: password to login
+    /// - parameter name: full name
+    /// - parameter hospital: work hospital
+    /// - parameter corem: register number in the country's registry of nurses
     init (email: String, password: String, name: String, hospital: Hospital, corem: String) {
         self.corem = corem
         

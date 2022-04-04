@@ -8,21 +8,40 @@
 
 import Foundation
 
-// Class for patients objects, with their basic information and related to their collected vital signs
+/// Class for patients objects, with their basic information and related to their collected vital signs
 class Patient {
+    /// full name
     var name: String
+    /// country's document number
     var cpf: String
+    /// phone number
     var phone: String
+    /// date of birth
     var dateBirth: Date
+    /// comorbidity
     var comorbidity: String
+    /// allergy
     var allergy: String
+    /// date entrance in the hospital
     var dateEntrance: Date
+    /// is being monitored
     var isMonitored: Bool
     //var hospital: Hospital
+    /// hospital sector that is hospitalizes
     var hospitalSector: HospitalSector?
+    /// vital signs recorded
     var vitalSign: [String: [PatientVitalSign]]  //String ou VitalSignType
+    /// assistant to set up HealthKit access
     var HKsetup: HealthKitSetupAssistant?
     
+    /// - parameter name: full name
+    /// - parameter cpf: country's document number
+    /// - parameter phone: phone number
+    /// - parameter dateBirth: date of birth
+    /// - parameter comorbidity: comorbidity
+    /// - parameter allergy: allergy
+    /// - parameter dateEntrance: date entrance in the hospital
+    /// - parameter isMonitored: is being monitored
     init(name: String, cpf: String, phone: String, dateBirth: Date, comorbidity: String, allergy: String, dateEntrance: Date, isMonitored: Bool) { //}, hospitalSector: HospitalSector?) {
         
         self.name = name
@@ -38,7 +57,9 @@ class Patient {
         self.vitalSign = [:]
     }
     
-    // function to add new vital sign
+    /// Add a new vital sign to the patient
+    /// - parameter type: vital sign type
+    /// - parameter value: recorded vital sign value
     func addVitalSign(type: VitalSignType, value: Double) {
         let patientVitalSign = PatientVitalSign.init(value: value, datetime: Date(), vitalSignType: type)
         
@@ -52,7 +73,8 @@ class Patient {
         }
     }
     
-    // function to get objects PatientVitalSign for a VitalSignType
+    /// Gets patients vital sign for a vital sign type
+    /// - parameter type: vital sign type
     func getVitalSignPatient(type: VitalSignType) -> [Double] {
         var vsTuples: [Double]
         

@@ -8,29 +8,32 @@
 
 import Foundation
 
-// Class to register a cyclic behavior inheriting from Action protocol. It contains functions to start and stop the cyclic collector and a provided collect function, that should be implemented depending on the data location
+/// Type of Action class with a default start function already implemented, representing actions that are executed in run loops by calling the runAction function.
+///
+/// If a new Action class extends from CyclicAction, it must override runAction function.
 class CyclicAction: Action {
-    var interval: Double //seconds
+    /// time interval in seconds between each call
+    var interval: Double
+    /// a Timer object to fire after a certain time interval has elapsed
     var timer: Timer?
     
+    /// - parameter interval: interval in seconds between each call
     init(interval: Double) {
         self.interval = interval
     }
     
-    override func start() {  //no oneshot, vai chamar direto o runAction
+    /// Starts the Timer to execute the runAction function in run loops considering the time interval in seconds
+    override func start() {
         self.timer = Timer.scheduledTimer(timeInterval: self.interval, target: self, selector: #selector(runAction), userInfo: nil, repeats: true)
     }
     
+    /// Invalidates the timer
     func stop() {
         self.timer?.invalidate()
     }
 
-    @objc func runAction(){  //antiga collect
-        // posCondition chamado aqui dentro
-    }
-    
-    func posCondition() -> Bool{  // varre as condicoes
-        // stop para ciclico na poscondition
-        return true
+    /// Runs the action based on a task. This function must be overriden when this class is extended
+    @objc func runAction(){
+        print("Implement your runAction function")
     }
 }

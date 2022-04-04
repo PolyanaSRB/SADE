@@ -8,17 +8,27 @@
 
 import Foundation
 
+/// AnomaliesAction class extends from OneShotAction class to detect anomalies considering typical values range of each vital sign
 class AnomaliesAction: OneShotAction {
+    
+    /// action execution result as a dictionary where the key is the patient where an anomaly was found, and the value is the message to alert about the anomaly
     var result: [(patient: Patient, message: String)] = []
     
+    /// ECG vital sign type considering its min and max typical measurement value
     let ecg = VitalSignType(name: "ecg", description: "Eletrocardiograma", min: 56, max: 94)
+    /// SpO2 vital sign type considering its min and max typical measurement value
     let spo2 = VitalSignType(name: "spo2", description: "Oximetria", min: 91, max: 104)
+    /// respiratory frequency vital sign type considering its min and max typical measurement value
     let fr = VitalSignType(name: "fr", description: "Frequência respiratória", min: 11, max: 21)
+    /// systolic blood pressure vital sign type considering its min and max typical measurement value
     let pas = VitalSignType(name: "pas", description: "Pressão Arterial Sistólica", min: 101, max: 139)
+    /// diastolic blood pressure vital sign type considering its min and max typical measurement value
     let pad = VitalSignType(name: "pad", description: "Pressão Arterial Diastólica", min: 61, max: 94)
+    /// temperature vital sign type considering its min and max typical measurement value
     let temp = VitalSignType(name: "temp", description: "Temperatura", min: 35, max: 39)
     
-    @objc override func runAction() { // TODO: passar 'last' ou 'all' como parametro
+    /// Verifies anomalies into the last vital signs registered to the patients
+    @objc override func runAction() {
         let patients = self.parameter as! [Patient]
         
         for patient in patients {
@@ -53,7 +63,6 @@ class AnomaliesAction: OneShotAction {
             }
             
             self.result.append((patient: patient, message: message))
-            // TODO: retornar a mensagem e onde chamei a acao, enviar msg para o AlertAgent
         }
     }
 }

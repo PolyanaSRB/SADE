@@ -9,8 +9,10 @@
 // import Foundation
 import HealthKit
 
+/// Class that offers functions to query health data and save new health data in HealthKit.
 class HealthKitReaderWriter {
-    // function to get main characteristics
+    
+    /// Gets user main characteristics - age, biological sex and blood type.
     class func getAgeSexAndBloodType() throws -> (age: Int,
                                                   biologicalSex: HKBiologicalSex,
                                                   bloodType: HKBloodType) {
@@ -19,12 +21,12 @@ class HealthKitReaderWriter {
         
         do {
 
-            //1. This method throws an error if these data are not available.
+            /// 1. This method throws an error if these data are not available.
             let birthdayComponents =  try healthKitStore.dateOfBirthComponents()
             let biologicalSex =       try healthKitStore.biologicalSex()
             let bloodType =           try healthKitStore.bloodType()
               
-            //2. Use Calendar to calculate age.
+            /// 2. Use Calendar to calculate age.
             let today = Date()
             let calendar = Calendar.current
             let todayDateComponents = calendar.dateComponents([.year],
@@ -32,7 +34,7 @@ class HealthKitReaderWriter {
             let thisYear = todayDateComponents.year!
             let age = thisYear - birthdayComponents.year!
              
-            //3. Unwrap the wrappers to get the underlying enum values.
+            /// 3. Unwrap the wrappers to get the underlying enum values.
             let unwrappedBiologicalSex = biologicalSex.biologicalSex
             let unwrappedBloodType = bloodType.bloodType
               
@@ -40,10 +42,16 @@ class HealthKitReaderWriter {
         }
     }
     
+    /// Gets data of a sample type between start date and end date
+    /// - parameter sampleType: the health data type to collect a sample
+    /// - parameter startDate: initial date of the query time range
+    /// - parameter endDate: final date of the query time range
+    /// - parameter limit: number of results that must be returned
+    ///
+    /// For the most recent sample, set limit=1, startDate=Date.distantPast and endDate=Date()
     class func getSample(for sampleType: HKSampleType, startDate: Date, endDate: Date, limit: Int = Int(HKObjectQueryNoLimit),
                                    completion: @escaping ([HKQuantitySample]?, Error?) -> Swift.Void) {
       
-        // for the most recent sample, set limit=1, startDate=Date.distantPast and endDate=Date()
         //1. Use HKQuery to load the most recent samples.
         let samplePredicate = HKQuery.predicateForSamples(withStart: startDate,
                                                               end: endDate,
@@ -76,6 +84,10 @@ class HealthKitReaderWriter {
         HKHealthStore().execute(sampleQuery)
     }
     
+    /// Inserts a quantity type into HealthKit
+    /// - parameter type: quantity type
+    /// - parameter quantity: value of the quantity type data
+    /// - parameter date: date of the record
     class func saveQuantitySample(type: HKQuantityType, quantity: HKQuantity, date: Date) {
         let quantitySample = HKQuantitySample(type: type,
                                               quantity: quantity,
@@ -91,8 +103,13 @@ class HealthKitReaderWriter {
         }
     }
     
+    /// Inserts a category type into HealthKit
+    /// - parameter type: category type
+    /// - parameter value: value of the category type data
+    /// - parameter date: date of the record
+    ///
+    /// This fuction can be used by healthcare worker to insert patient symptoms
     class func saveCategorySample(type: HKCategoryType, value: Int, date: Date) {
-        // this fuction can be used by healthcare worker to insert patient symptoms
         let categorySample = HKCategorySample(type: type,
                                               value: value,
                                               start: date,
@@ -107,6 +124,10 @@ class HealthKitReaderWriter {
         }
     }
     
+    /// Saves a correlation type into HealthKit
+    /// - parameter type: correlation type
+    /// - parameter objects: set of correlated samples
+    /// - parameter date: date of the record
     class func saveCorrelation(type: HKCorrelationType, objects: Set<HKSample>, date: Date) {
         let correlationSample = HKCorrelation(type: type,
                                               start: date,

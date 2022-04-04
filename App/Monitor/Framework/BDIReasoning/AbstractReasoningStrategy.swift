@@ -8,11 +8,14 @@
 
 import Foundation
 
+/// AbstractReasoningStrategy class is a default class of the ReasoningStrategy protocol with the setAgent function already implemented.
 class AbstractReasoningStrategy: ReasoningStrategy {
+    /// Agent object that will use the strategy
     var agent: Agent?
     
+    /// Relates the strategy with the agent
+    /// - parameter agent: the agent that will run the strategy in its BDI reasoning
     func setAgent(agent: Agent) {
-        // implement function setAgent
         self.agent = agent
     }
     

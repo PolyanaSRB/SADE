@@ -8,6 +8,9 @@
 
 import Foundation
 
+/// ReasoningStrategy protocol to be the base of every strategy of the BDI reasoning cycle
 protocol ReasoningStrategy {
+    /// Relates the strategy with the agent
+    /// - parameter agent: the agent that will run the strategy in its BDI reasoning
     func setAgent(agent: Agent)
 }

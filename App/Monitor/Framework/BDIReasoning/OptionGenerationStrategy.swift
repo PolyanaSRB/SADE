@@ -8,6 +8,11 @@
 
 import Foundation
 
+/// OptionGenerationStrategy protocol models the review of an agent's goals, the second step of the BDI reasoning cycle.
+///
+/// If one needs to create a OptionGenerationStrategy, this protocol must be extended
 protocol OptionGenerationStrategy: ReasoningStrategy {
+    /// Reviews a Goal array
+    /// - parameter beliefs: array of Goals to be reviewed
     func reviewGoals(goals: [Goal])
 }

@@ -8,6 +8,10 @@
 
 import Foundation
 
+/// Condition protocol to represent a condition to execute an action or to verify after the action execution.
+///
+/// This protocol must be extended to create your own condition class with a conditionAnalysis function.
 protocol Condition {
-    func testCondition() -> Bool
+    /// Parses pre or post conditions of execution of some Action and returns a boolean
+    func conditionAnalysis() -> Bool
 }
