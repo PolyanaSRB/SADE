@@ -122,17 +122,17 @@ class LoginController: UIViewController, UITextFieldDelegate {
         let alertPlanSelection = DefaultPlanSelectionStrategy()
         
         //set agents
-        let collectorAgent = Agent(agentName: "CollectorAgent", goals: [collectGoal], beliefs: [:], plans: [collectPlan], beliefRevision: collectorBeliefRevision, optionGeneration: collectorOptionGener, filter: collectorFilter, planSelection: collectorPlanSelection, port: 9000)
+        let collectorAgent = Agent(agentName: "CollectorAgent", goals: [collectGoal], beliefs: [:], plans: [collectPlan], beliefRevision: collectorBeliefRevision, optionGeneration: collectorOptionGener, filter: collectorFilter, planSelection: collectorPlanSelection, runBDICycleInStart: true, port: 9000)
         
         collectAction.agent = collectorAgent
         
-        let vitalSignAgent = Agent(agentName: "VitalSignAgent", goals: [vitalSignGoal], beliefs: [:], plans: [vitalSignPlan], beliefRevision: vitalSignBeliefRevision, optionGeneration: vitalSignOptionGener, filter: vitalSignFilter, planSelection: vitalSignPlanSelection, port: 8888)
+        let vitalSignAgent = Agent(agentName: "VitalSignAgent", goals: [vitalSignGoal], beliefs: [:], plans: [vitalSignPlan], beliefRevision: vitalSignBeliefRevision, optionGeneration: vitalSignOptionGener, filter: vitalSignFilter, planSelection: vitalSignPlanSelection, runBDICycleInStart: false, port: 8888)
 
         let msgtoBeliefCollector = Belief()
         msgtoBeliefCollector.data = vitalSignAgent.agentName
         collectorAgent.addBelief(name: "msgTo", belief: msgtoBeliefCollector)
         
-        let alertAgent = Agent(agentName: "AlertAgent", goals: [alertGoal], beliefs: [:], plans: [alertPlan], beliefRevision: alertBeliefRevision, optionGeneration: alertOptionGener, filter: alertFilter, planSelection: alertPlanSelection, port: 9999)
+        let alertAgent = Agent(agentName: "AlertAgent", goals: [alertGoal], beliefs: [:], plans: [alertPlan], beliefRevision: alertBeliefRevision, optionGeneration: alertOptionGener, filter: alertFilter, planSelection: alertPlanSelection, runBDICycleInStart: false, port: 9999)
         
         let msgtoBeliefVS = Belief()
         msgtoBeliefVS.data = alertAgent.agentName

@@ -31,6 +31,8 @@ class Agent: Thread {
     var filter: DeliberationStrategy
     /// strategy to choose the plans to be executed, which belong to the chosen goal. The last step of the BDI reasoning
     var planSelection: PlanSelectionStrategy
+    /// if true, function start will call function runBDICycle
+    var runBDICycleInStart: Bool
     /// port address to receive and send messages
     var port: UInt16
     /// Client array containing the addresses of agents with whom the self agent has already communicated
@@ -44,8 +46,9 @@ class Agent: Thread {
     /// - parameter optionGeneration: goals revision strategy, the second step of the BDI reasoning
     /// - parameter filter: goals choice strategy, the third step of the BDI reasoning
     /// - parameter planSelection: strategy to choose the plans to be executed, which belong to the chosen goal. The last step of the BDI reasoning
+    /// - parameter runBDICycleInStart: if true, function start will call function runBDICycle
     /// - parameter port: port address to receive and send messages
-    init(agentName: String, goals: [Goal], beliefs: [String: Belief], plans: [Plan], beliefRevision: BeliefRevisionStrategy, optionGeneration: OptionGenerationStrategy, filter: DeliberationStrategy, planSelection: PlanSelectionStrategy, port: UInt16) {
+    init(agentName: String, goals: [Goal], beliefs: [String: Belief], plans: [Plan], beliefRevision: BeliefRevisionStrategy, optionGeneration: OptionGenerationStrategy, filter: DeliberationStrategy, planSelection: PlanSelectionStrategy, runBDICycleInStart: Bool, port: UInt16) {
         self.agentName = agentName
         self.goals = goals
         self.beliefs = beliefs
@@ -54,6 +57,7 @@ class Agent: Thread {
         self.optionGeneration  = optionGeneration
         self.filter = filter
         self.planSelection = planSelection
+        self.runBDICycleInStart = runBDICycleInStart
         self.port = port
         
         super.init()
@@ -93,10 +97,12 @@ class Agent: Thread {
         self.plans.append(plan)
     }
     
-    /// Starts the agent as a Thread and runs the BDI cycle (function runBDICycle)
+    /// Starts the agent as a Thread and, if runBDICycleinStart, runs the BDI cycle (function runBDICycle)
     override func start(){
         super.start()
-        runBDICycle()
+        if self.runBDICycleInStart {
+            runBDICycle()
+        }
     }
     
     /// Stops the agent as a Thread
