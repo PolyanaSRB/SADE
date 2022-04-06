@@ -9,15 +9,17 @@
 import Foundation
 
 /// ACLMessage class represents messages sent from one agent to another. Each message follows the Agent Communication Language (ACL), a set of one or more message parameters, which defines which information each message must contain. Among these parameters are, for example, the type of communicative act (performative), sender, receiver and message content.
-class ACLMessage: NSObject, NSCoding {
+class ACLMessage: NSObject, NSCoding, NSSecureCoding {
+    static var supportsSecureCoding: Bool = true
+    
     /// type of the communicative act
     var performative: Performative!
     /// identity of the sender
-    var sender: Agent!
+    var sender: String!
     /// identity of the intended recipients
-    var receiver: Agent!
+    var receiver: String!
     /// indicates that subsequent messages in this conversation thread are to be directed to the replyTo agent
-    var replyTo: Agent!
+    var replyTo: String!
     /// content of the message
     var content: String!
     /// language in which the content parameter is expressed
@@ -43,19 +45,19 @@ class ACLMessage: NSObject, NSCoding {
 
     required init(coder aDecoder: NSCoder) {
 
-        if let performative = aDecoder.decodeObject(forKey: "performative") as? Performative {
+        if let performative = Performative(rawValue: (aDecoder.decodeObject(forKey: "performative") as? String)!) {
             self.performative = performative
         }
 
-        if let sender = aDecoder.decodeObject(forKey: "sender") as? Agent {
+        if let sender = aDecoder.decodeObject(forKey: "sender") as? String {
             self.sender = sender
         }
         
-        if let receiver = aDecoder.decodeObject(forKey: "receiver") as? Agent {
+        if let receiver = aDecoder.decodeObject(forKey: "receiver") as? String {
             self.receiver = receiver
         }
         
-        if let replyTo = aDecoder.decodeObject(forKey: "replyTo") as? Agent {
+        if let replyTo = aDecoder.decodeObject(forKey: "replyTo") as? String {
             self.replyTo = replyTo
         }
         
@@ -97,7 +99,7 @@ class ACLMessage: NSObject, NSCoding {
     }
 
     func encode(with aCoder: NSCoder) {
-        aCoder.encode(performative, forKey: "performative")
+        aCoder.encode(performative.rawValue, forKey: "performative")
         aCoder.encode(sender, forKey: "sender")
         aCoder.encode(receiver, forKey: "receiver")
         aCoder.encode(replyTo, forKey: "replyTo")
@@ -115,7 +117,7 @@ class ACLMessage: NSObject, NSCoding {
 }
 
 /// ACLMessage possible performatives
-enum Performative {
+enum Performative: String {
     /// the action of accepting a previously submitted proposal to perform an action
     case acceptProposal
     /// the action of agreeing to perform some action, possibly in the future

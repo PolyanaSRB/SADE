@@ -64,7 +64,7 @@ class ServerConnection {
     private func setupReceive() {
         connection.receive(minimumIncompleteLength: 1, maximumLength: MTU) { (data, _, isComplete, error) in
             if let data = data, !data.isEmpty {
-                let acl = NSKeyedUnarchiver.unarchiveObject(with: data) as? ACLMessage
+                let acl = try! NSKeyedUnarchiver.unarchivedObject(ofClass: ACLMessage.self, from: data)
                 let content = acl!.content
                 self.agent.runBDICycle()
                 print("connection \(self.id) did receive, data: \(data as NSData) string: \(content ?? "-")")

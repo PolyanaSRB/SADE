@@ -26,12 +26,12 @@ class SequencePlan: Plan {
                 newActions.append(action)
             }
         }
-        self.actions = newActions
+        //self.actions = newActions
         
-        if (newActions.isEmpty) {
-            self.status = .executed
-        }
-        else if (self.status != .fail) {
+        /*if (newActions.isEmpty) {
+            self.status = .neverExecuted //.executed
+        }*/
+        if (self.status != .fail) {
             self.status = .neverExecuted // like a 'try again' to the actions that were not executed
         }
     }

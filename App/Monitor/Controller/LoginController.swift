@@ -84,18 +84,22 @@ class LoginController: UIViewController, UITextFieldDelegate {
         let collectGoal = Goal(name: "CollectGoal")
         let vitalSignGoal = Goal(name: "VitalSignGoal")
         let alertGoal = Goal(name: "AlertGoal")
-        //Environment.environment.goals = [collectGoal, vitalSignGoal, alertGoal]
         
         // set actions
         let collectAction = CollectorAction(interval: 30)
-        //var actionsVitalSign: [VitalSignAction] = []
-        //var alertAction: [AlertAction] = []
+        let VSaction = VitalSignAction() //AnomaliesAction()
+        VSaction.parameter = COVID19UsefulData.shared.patients as AnyObject
+        
+        let alertAction = AlertAction()
+        
         
         //set plans
         let collectPlan = SequencePlan(name: "CollectPlan", goal: collectGoal)
         collectPlan.actions.append(collectAction)
         let vitalSignPlan = SequencePlan(name: "VitalSignPlan", goal: vitalSignGoal)
+        vitalSignPlan.actions.append(VSaction)
         let alertPlan = SequencePlan(name: "AlertPlan", goal: alertGoal)
+        alertPlan.actions.append(alertAction)
         
         collectGoal.plans = [0:collectPlan]
         vitalSignGoal.plans = [0:vitalSignPlan]
@@ -128,15 +132,25 @@ class LoginController: UIViewController, UITextFieldDelegate {
         
         let vitalSignAgent = Agent(agentName: "VitalSignAgent", goals: [vitalSignGoal], beliefs: [:], plans: [vitalSignPlan], beliefRevision: vitalSignBeliefRevision, optionGeneration: vitalSignOptionGener, filter: vitalSignFilter, planSelection: vitalSignPlanSelection, runBDICycleInStart: false, port: 8888)
 
+        VSaction.agent = vitalSignAgent
+        
         let msgtoBeliefCollector = Belief()
         msgtoBeliefCollector.data = vitalSignAgent.agentName
         collectorAgent.addBelief(name: "msgTo", belief: msgtoBeliefCollector)
         
         let alertAgent = Agent(agentName: "AlertAgent", goals: [alertGoal], beliefs: [:], plans: [alertPlan], beliefRevision: alertBeliefRevision, optionGeneration: alertOptionGener, filter: alertFilter, planSelection: alertPlanSelection, runBDICycleInStart: false, port: 9999)
         
+        alertAction.agent = alertAgent
+        
         let msgtoBeliefVS = Belief()
         msgtoBeliefVS.data = alertAgent.agentName
         vitalSignAgent.addBelief(name: "msgTo", belief: msgtoBeliefVS)
+        
+        
+        let patientsWithAnomalies = Belief()
+        patientsWithAnomalies.data = []
+        vitalSignAgent.addBelief(name: "patientsWithAnomalies", belief: patientsWithAnomalies)
+        alertAgent.addBelief(name: "patientsWithAnomalies", belief: patientsWithAnomalies)
         
         collectorAgent.start()
         vitalSignAgent.start()

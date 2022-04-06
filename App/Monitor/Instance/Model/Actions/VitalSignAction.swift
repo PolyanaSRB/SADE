@@ -23,18 +23,14 @@ class VitalSignAction: AnomaliesAction {
         let msgTo = self.agent?.beliefs["msgTo"]?.data
         let agentReceiver = Environment.environment.whitePages(agentName: msgTo as! String)
         
-        for patientMessage in patientsMessages {
-            let patient = patientMessage.patient
-            let message = patientMessage.message
-            
-            let alertAction = AlertAction()
-            alertAction.parameter = (patient, message) as AnyObject
-            agentReceiver?.goals[0].plans[0]?.status = StatusPlan.neverExecuted
-            agentReceiver?.plans[0].actions.append(alertAction)
+        self.agent?.beliefs["patientsWithAnomalies"]?.data = patientsMessages
+        
+        if !patientsMessages.isEmpty {
+            let aclVSmessage = ACLMessage()
+            aclVSmessage.performative = .inform
+            aclVSmessage.content = "Send alerts!"
+            let port = agentReceiver?.port
+            self.agent.sendMessage(host: "localhost", port: port!, message: aclVSmessage)
         }
-        let aclVSmessage = ACLMessage()
-        aclVSmessage.content = "Send alerts!"
-        let port = agentReceiver?.port
-        self.agent.sendMessage(host: "localhost", port: port!, message: aclVSmessage)
     }
 }

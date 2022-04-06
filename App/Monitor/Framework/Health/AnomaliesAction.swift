@@ -31,6 +31,8 @@ class AnomaliesAction: OneShotAction {
     @objc override func runAction() {
         let patients = self.parameter as! [Patient]
         
+        self.result = []
+        
         for patient in patients {
             let vitalSigns = patient.vitalSign
 

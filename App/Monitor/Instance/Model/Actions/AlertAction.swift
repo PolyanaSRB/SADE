@@ -11,18 +11,25 @@ import Foundation
 import UserNotifications
 
 class AlertAction: OneShotAction {
+    var agent: Agent!
     
     @objc override func runAction() {
-        let (patient, message) = self.parameter as! (COVID19Patient, String)
+        let patientsWithAnomalies = self.agent.beliefs["patientsWithAnomalies"]?.data as! [(patient: Patient, message: String)]
         
-        if message != "" {
-            print(patient.name, message)
-            COVID19UsefulData.shared.alert = COVID19UsefulData.shared.alert + message
+        for patientMessage in patientsWithAnomalies {
+            let patient = patientMessage.patient
+            let message = patientMessage.message
             
-            scheduleNotification(title: patient.name, message: message)
-
+            if message != "" {
+                print(patient.name, message)
+                COVID19UsefulData.shared.alert = COVID19UsefulData.shared.alert + message
+                
+                scheduleNotification(title: patient.name, message: message)
+            }
         }
+        self.agent.beliefs["patientsWithAnomalies"]?.data = []
     }
+    
     func scheduleNotification(title: String, message: String) {
         let center = UNUserNotificationCenter.current()
 

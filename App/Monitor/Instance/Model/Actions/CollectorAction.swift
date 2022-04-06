@@ -9,28 +9,24 @@
 import Foundation
 import Charts
 
-// My instance class for collector behavior, inheriting from the Framework class CyclicAction
+/// My instance class for collector behavior, inheriting from the Framework class CyclicAction
 class CollectorAction : CyclicAction {
     static var monitorController: MonitorController?
     var agent: Agent!
     
-    // Function to collect new vital signs for each patient being monitored by health care worker logged in the app and to update monitor charts, adding new entries
+    /// Function to collect new vital signs for each patient being monitored by health care worker logged in the app and to update monitor charts, adding new entries
     @objc override func runAction() {
         print("COVID19collector")
         let msgTo = self.agent.beliefs["msgTo"]?.data
-        let agentReceiver = Environment.environment.whitePages(agentName: msgTo as! String) //Environment.environment.agents[msgTo as! String]
+        let agentReceiver = Environment.environment.whitePages(agentName: msgTo as! String)
         var patients: [Patient] = []
         for patient in COVID19UsefulData.shared.patients {
             COVID19DAOPatientVitalSign.getVitalSign(patient: patient, option: "last")
             patients.append(patient)
         }
-        let VSaction = VitalSignAction() //AnomaliesAction()
-        VSaction.parameter = patients as AnyObject
-        VSaction.agent = agentReceiver
         
-        agentReceiver?.goals[0].plans[0]?.status = StatusPlan.neverExecuted
-        agentReceiver?.plans[0].actions.append(VSaction)
         let aclVSmessage = ACLMessage()
+        aclVSmessage.performative = .inform
         aclVSmessage.content = "Verify anomalies on patients"
         let port = agentReceiver?.port
         self.agent.sendMessage(host: "localhost", port: port!, message: aclVSmessage)
