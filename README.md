@@ -1,2 +1,2 @@
-# vital-sign-monitor-ios
-A Framework with BDI Multi-Agent System and heakth module in Swift and an instance for vital sign monitoring
+# SADE4Health
+A Framework with BDI Multi-Agent System and health module in Swift and an instance for vital sign monitoring
